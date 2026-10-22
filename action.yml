@@ -1,5 +1,5 @@
-name: 'blastradius'
-description: 'Fail the build when a bad package is in the checkout, or hunt an advisory across the checkout and your index. Read-only; no token needed for checkout mode.'
+name: 'Blastradius supply-chain hunt'
+description: 'Fail the build on a bad package in the checkout, or hunt an advisory across the checkout and your br index. Read-only.'
 author: 'jondot'
 branding:
   icon: 'shield'

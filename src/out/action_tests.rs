@@ -140,3 +140,14 @@ fn the_hook_script_is_the_entry_the_hook_file_names() {
     assert_eq!(y[0]["pass_filenames"].as_bool(), Some(true));
     assert_eq!(y[0]["id"].as_str(), Some("blastradius"));
 }
+
+#[test]
+fn the_action_metadata_fits_the_marketplace_limits() {
+    let y = yaml("action.yml");
+    let name = y["name"].as_str().expect("action.yml has a name");
+    let desc = y["description"].as_str().expect("action.yml has a description");
+    assert!(!name.trim().is_empty());
+    // the Marketplace refuses to list an action whose description is 125 characters or longer
+    assert!(desc.chars().count() < 125, "description is {} characters: {desc}", desc.chars().count());
+    assert!(y["branding"]["icon"].as_str().is_some() && y["branding"]["color"].as_str().is_some(), "the Marketplace needs branding");
+}
