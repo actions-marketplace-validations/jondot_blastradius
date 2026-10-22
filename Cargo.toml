@@ -2,7 +2,7 @@
 name = "blastradius"
 version = "0.1.0"
 edition = "2021"
-description = "Find where a bad package, action or file landed in your org, what it could reach, and who to tell"
+description = "Find everywhere a bad package, runtime, certificate or secret lives in your org: repos, CI, images and laptops, read-only"
 license = "MIT"
 repository = "https://github.com/jondot/blastradius"
 homepage = "https://github.com/jondot/blastradius"
