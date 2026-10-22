@@ -1,1 +1,11 @@
+attic/
 target/
+__pycache__/
+harness/live/out/
+ratings/round-*/rig/
+ratings/round-*/bin/
+ratings/round-*/*/home/
+ratings/round-*/*/work/
+ratings/round-*/rig.pid
+ratings/round-*.rig.log
+.DS_Store
