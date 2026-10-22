@@ -772,7 +772,7 @@ pub fn section_blocks(res: &HuntResult, ix: &Index, wide: bool) -> Vec<Block> {
                 None => where_in_words(f),
             });
             if has_blob {
-                row.push(if f.deleted_in.is_some_and(|d| d > 0) { f.layer_blob.as_deref().map_or("-".to_string(), &dg) } else { "-".into() });
+                row.push(if f.deleted_in.is_some_and(|d| d > 0) { f.layer_blob.as_deref().map_or("-".to_string(), dg) } else { "-".into() });
             }
             row.push(owner_str(ix, f));
             if multi {
