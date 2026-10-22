@@ -9,6 +9,6 @@ npm i -g blastradius && br --help             # installs the `br` and `blastradi
 claude mcp add blastradius -- npx -y blastradius mcp
 ```
 
-This package runs the native `br` binary for your platform (macOS and Linux on x86_64 and arm64, Windows on x86_64), installed as an optional dependency. Exit codes are br's own: 0 clear, 10 found, 3 clear with gaps under `--strict`.
+This package runs the native `br` binary for your platform (macOS and Linux, x86_64 and arm64; for Windows, take the zip from the [releases page](https://github.com/jondot/blastradius/releases)), installed as an optional dependency. Exit codes are br's own: 0 clear, 10 found, 3 clear with gaps under `--strict`.
 
 Docs, the GitHub Action and the agent skill: https://github.com/jondot/blastradius

@@ -8,13 +8,14 @@ const key = `${process.platform}-${process.arch}`;
 const install = "curl -fsSL https://raw.githubusercontent.com/jondot/blastradius/main/install.sh | sh";
 
 if (!(key in platforms)) {
-  console.error(`blastradius: no build for ${key}. Builds: ${Object.keys(platforms).join(", ")}.`);
+  console.error(`blastradius: npm has builds for ${Object.keys(platforms).join(", ")}, not ${key}.`);
+  console.error("Other builds (Windows included): https://github.com/jondot/blastradius/releases");
   process.exit(1);
 }
 
 let bin;
 try {
-  bin = require.resolve(`blastradius-${key}/bin/${process.platform === "win32" ? "br.exe" : "br"}`);
+  bin = require.resolve(`blastradius-${key}/bin/br`);
 } catch {
   console.error(`blastradius: the package blastradius-${key} is missing (installed with --no-optional or --omit=optional?).`);
   console.error(`Reinstall without that flag, or install the binary directly: ${install}`);

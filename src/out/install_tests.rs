@@ -39,9 +39,10 @@ fn every_npm_platform_is_built_by_the_release() {
 }
 
 #[test]
-fn every_release_target_has_an_npm_package() {
+fn every_unix_release_target_has_an_npm_package() {
+    // Windows ships as a zip on the releases page only: npm's spam filter blocks a new account's win32 package name
     let mapped: BTreeSet<String> = npm_platforms().values().filter_map(|t| t.as_str().map(String::from)).collect();
-    for target in release_targets() {
+    for target in release_targets().into_iter().filter(|t| !t.contains("windows")) {
         assert!(mapped.contains(&target), "release.yml builds {target} but npm/platforms.json has no package for it");
     }
 }
