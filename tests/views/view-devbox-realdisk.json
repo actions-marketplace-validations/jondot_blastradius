@@ -1,0 +1,71 @@
+{
+ "hosts": {
+  "devbox-1": {
+   "items": [],
+   "kind": "dev-laptop",
+   "os": null,
+   "owner": "devperson",
+   "owner_team": null
+  }
+ },
+ "images": [],
+ "now": "2026-09-01T09:00:00Z",
+ "org": {
+  "github": "devbox",
+  "name": "Devbox"
+ },
+ "org_admins": [],
+ "org_secrets": [],
+ "people": [
+  {
+   "login": "devperson",
+   "name": "Dev Person",
+   "team": "core"
+  }
+ ],
+ "repos": {
+  "devbox/app": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @devbox/core\n",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": "package-lock.json",
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  }
+ },
+ "sources": {
+  "devbox-1": {
+   "indexed_at": "2026-09-01T07:00:00Z",
+   "kind": "host",
+   "reach": "import-only"
+  },
+  "devbox/app": {
+   "indexed_at": "2026-09-01T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  }
+ },
+ "state": {
+  "custody": [],
+  "imports": {},
+  "last_scan": null,
+  "scans": [],
+  "yara_hits": []
+ },
+ "teams": [
+  {
+   "id": "@devbox/core",
+   "jira": null,
+   "lead": "devperson",
+   "slack": "#eng"
+  }
+ ]
+}

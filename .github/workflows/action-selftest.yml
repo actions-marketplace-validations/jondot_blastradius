@@ -1,0 +1,129 @@
+name: Action selftest
+
+# Runs this repo's own Action (uses: ./) against two fixture checkouts: tests/action/bad pins a listed package and must
+# fail the job; tests/action/clean must pass. The script-level checks (install and checksums, usage errors, SARIF, the
+# pre-commit hook) are cases 430-439, run by the CI workflow.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'action.yml'
+      - 'action/**'
+      - 'hooks/**'
+      - '.pre-commit-hooks.yaml'
+      - 'tests/action/**'
+      - 'src/out/sarif.rs'
+      - '.github/workflows/action-selftest.yml'
+  pull_request:
+    paths:
+      - 'action.yml'
+      - 'action/**'
+      - 'hooks/**'
+      - '.pre-commit-hooks.yaml'
+      - 'tests/action/**'
+      - 'src/out/sarif.rs'
+      - '.github/workflows/action-selftest.yml'
+
+permissions:
+  contents: read
+
+env:
+  INDICATOR: npm:evil-dep@1.2.3
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: selftest-${{ runner.os }}-${{ hashFiles('Cargo.lock') }}
+          restore-keys: selftest-${{ runner.os }}-
+      - run: cargo build --release --locked
+      - uses: actions/upload-artifact@v4
+        with:
+          name: br
+          path: target/release/br
+          retention-days: 1
+
+  bad-lockfile-fails:
+    needs: build
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: br
+          path: bin
+      - run: chmod +x bin/br
+      - name: Run the Action on the bad checkout (it must fail)
+        id: act
+        continue-on-error: true
+        uses: ./
+        with:
+          indicators: ${{ env.INDICATOR }}
+          path: tests/action/bad
+          br-path: bin/br
+      - name: Expect failure and the answer FOUND
+        env:
+          OUTCOME: ${{ steps.act.outcome }}
+          RESULT: ${{ steps.act.outputs.result }}
+          CODE: ${{ steps.act.outputs.exit-code }}
+        run: |
+          echo "outcome=$OUTCOME result=$RESULT exit-code=$CODE"
+          test "$OUTCOME" = failure
+          test "$RESULT" = found
+          test "$CODE" = 10
+
+  clean-lockfile-passes:
+    needs: build
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: br
+          path: bin
+      - run: chmod +x bin/br
+      - name: Run the Action on the clean checkout (it must pass)
+        id: act
+        uses: ./
+        with:
+          indicators: ${{ env.INDICATOR }}
+          path: tests/action/clean
+          br-path: bin/br
+      - name: Expect clear
+        env:
+          RESULT: ${{ steps.act.outputs.result }}
+        run: test "$RESULT" = clear
+
+  sarif-shape:
+    needs: build
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: br
+          path: bin
+      - run: chmod +x bin/br
+      - name: Ask br for the SARIF itself and check its shape
+        run: |
+          set +e
+          bin/br hunt "$INDICATOR" --path tests/action/bad --format sarif > out.sarif
+          test $? -eq 10
+          python3 - <<'PY'
+          import json
+          d = json.load(open("out.sarif"))
+          assert d["version"] == "2.1.0"
+          r = d["runs"][0]["results"]
+          assert len(r) == 1 and r[0]["level"] == "error", r
+          assert r[0]["locations"][0]["physicalLocation"]["artifactLocation"]["uri"].endswith("package-lock.json"), r
+          PY

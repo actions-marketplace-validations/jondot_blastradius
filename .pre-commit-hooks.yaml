@@ -1,0 +1,8 @@
+- id: blastradius
+  name: blastradius (lockfiles against .br-indicators)
+  description: Fail the commit when a lockfile it changes holds a package listed in .br-indicators. Needs br on PATH; reads only, no network.
+  entry: hooks/br-precommit.sh
+  language: script
+  files: '(^|/)(package-lock\.json|npm-shrinkwrap\.json|yarn\.lock|pnpm-lock\.yaml|bun\.lock|poetry\.lock|uv\.lock|pdm\.lock|Pipfile\.lock|Cargo\.lock|go\.mod|go\.sum|go\.work|[^/]*requirements[^/]*\.txt|[^/]*constraints[^/]*\.txt|vendor/modules\.txt|requirements/[^/]*\.txt)$'
+  pass_filenames: true
+  require_serial: true

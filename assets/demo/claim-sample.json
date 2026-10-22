@@ -1,0 +1,35 @@
+{
+  "org": "acme",
+  "repos": {
+    "acme/billing-portal": {
+      "package.json": "{\"name\":\"acme-billing-core\",\"version\":\"1.4.2\",\"bin\":{\"acme-bill\":\"bin/cli.js\"},\"dependencies\":{\"acme-ledger\":\"^2.0.0\",\"@acme/ui\":\"^3.1.0\",\"react\":\"18.3.1\"}}",
+      "packages/ledger/package.json": "{\"name\":\"acme-ledger\",\"version\":\"2.0.1\"}",
+      "packages/ui/package.json": "{\"name\":\"@acme/ui\",\"version\":\"3.1.0\"}",
+      ".npmrc": "@acme:registry=https://npm.acme.example/\n"
+    },
+    "acme/data-viz": {
+      "requirements.txt": "--extra-index-url https://py.acme.example/simple\nrequests==2.31.0\nacme-etl>=1.0\n",
+      "pyproject.toml": "[project]\nname = \"acme-data-svc\"\nversion = \"2.1.0\"\n"
+    },
+    "acme/dashboard": {
+      "Cargo.toml": "[package]\nname = \"acme-core\"\nversion = \"0.5.0\"\n[dependencies]\nacme-proto = { version = \"1\", registry = \"acme\" }\n",
+      ".cargo/config.toml": "[registries.acme]\nindex = \"sparse+https://cargo.acme.example/index/\"\n"
+    }
+  },
+  "registry": {
+    "npm": {
+      "acme-billing-core": {"by": ["mallory-x"], "versions": [["1.0.0", "2025-01-01T00:00:00Z", false], ["9999.0.0", "2026-05-02T03:00:00Z", true]]},
+      "acme-ledger": {"by": ["acme-bot"], "repo": ["git+https://github.com/acme/ledger.git"], "versions": [["2.0.1", "2025-06-01T00:00:00Z", false]]},
+      "acme-bill": {"by": ["bin-harvester"], "bins": ["acme-bill"], "versions": [["0.0.1", "2026-04-01T00:00:00Z", false]]},
+      "react": {"repo": ["git+https://github.com/facebook/react.git"], "versions": [["18.3.1", "2024-04-26T00:00:00Z", false]]}
+    },
+    "npm_scopes": {"acme": [{"name": "@acme/legacy", "publisher": "tom-t"}]},
+    "pypi": {
+      "requests": {"repo": ["https://github.com/psf/requests"], "versions": [["2.31.0", "2023-05-22T00:00:00Z", false]]},
+      "acme-data-svc": {"versions": [["99.0", "2026-05-03T00:00:00Z", true]]}
+    },
+    "crates": {
+      "acme-core": {"by": ["github:acme:platform"], "gh": true, "versions": [["0.5.0", "2026-01-01T00:00:00Z", null]]}
+    }
+  }
+}

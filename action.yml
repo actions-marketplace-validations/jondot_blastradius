@@ -1,0 +1,102 @@
+name: 'blastradius'
+description: 'Fail the build when a bad package is in the checkout, or hunt an advisory across the checkout and your index. Read-only; no token needed for checkout mode.'
+author: 'jondot'
+branding:
+  icon: 'shield'
+  color: 'red'
+
+inputs:
+  mode:
+    description: 'checkout (gate this checkout against `indicators`) or advisory (hunt `advisory` in this checkout, and in the index when `br-home` is given)'
+    required: false
+    default: 'checkout'
+  indicators:
+    description: 'What to look for, split on spaces, commas and newlines (# starts a comment): eco:name@version, sha256:HASH, action:owner/repo@ref'
+    required: false
+    default: ''
+  advisory:
+    description: 'Advisory id (GHSA-..., MAL-..., CVE-...) for mode: advisory'
+    required: false
+    default: ''
+  version:
+    description: 'br release to install, such as 0.1.0. Default: the release this Action version was published with'
+    required: false
+    default: ''
+  checksum:
+    description: 'Optional SHA-256 of the release archive, pinned by you. Default: the checksum file published with the release'
+    required: false
+    default: ''
+  br-path:
+    description: 'Use this br binary and download nothing (a build from source, or a mirror you vet yourself)'
+    required: false
+    default: ''
+  br-home:
+    description: 'mode: advisory only. A br home (an index) to hunt as well as the checkout'
+    required: false
+    default: ''
+  path:
+    description: 'The checkout directory to read'
+    required: false
+    default: '.'
+  sarif:
+    description: 'true uploads the findings to GitHub code scanning (needs security-events: write on the job)'
+    required: false
+    default: 'false'
+  sarif-category:
+    description: 'Category for the SARIF upload; set it when you run the Action more than once in a workflow'
+    required: false
+    default: 'blastradius'
+  fail-on:
+    description: 'found fails the job when a listed package is found; gaps also fails when some source could not be checked'
+    required: false
+    default: 'gaps'
+
+outputs:
+  result:
+    description: 'clear, gaps, found or error'
+    value: ${{ steps.hunt.outputs.result }}
+  exit-code:
+    description: 'the br exit code behind the result (0, 3, 10, or br''s error code)'
+    value: ${{ steps.hunt.outputs.exit-code }}
+  sarif-file:
+    description: 'path of the SARIF file, when sarif is true and br produced one'
+    value: ${{ steps.hunt.outputs.sarif-file }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install br
+      shell: bash
+      env:
+        BR_VERSION: ${{ inputs.version }}
+        BR_SHA256: ${{ inputs.checksum }}
+        BR_BIN_PATH: ${{ inputs.br-path }}
+      run: bash "${{ github.action_path }}/action/install.sh"
+
+    - name: Hunt
+      id: hunt
+      shell: bash
+      env:
+        BR_MODE: ${{ inputs.mode }}
+        BR_INDICATORS: ${{ inputs.indicators }}
+        BR_ADVISORY: ${{ inputs.advisory }}
+        BR_FAIL_ON: ${{ inputs.fail-on }}
+        BR_SARIF: ${{ inputs.sarif }}
+        BR_HOME_DIR: ${{ inputs.br-home }}
+        BR_SCAN_PATH: ${{ inputs.path }}
+      run: bash "${{ github.action_path }}/action/run.sh"
+
+    - name: Upload SARIF
+      if: ${{ always() && inputs.sarif == 'true' && steps.hunt.outputs.sarif-file != '' }}
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: ${{ steps.hunt.outputs.sarif-file }}
+        category: ${{ inputs.sarif-category }}
+
+    - name: Enforce
+      if: ${{ always() && steps.hunt.outcome == 'success' }}
+      shell: bash
+      env:
+        BR_EXIT_CODE: ${{ steps.hunt.outputs.exit-code }}
+        BR_RESULT: ${{ steps.hunt.outputs.result }}
+      run: bash "${{ github.action_path }}/action/enforce.sh" "$BR_EXIT_CODE" "$BR_RESULT"

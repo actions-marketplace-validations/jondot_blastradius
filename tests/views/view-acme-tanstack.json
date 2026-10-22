@@ -1,0 +1,2092 @@
+{
+ "hosts": {
+  "ci-runner-03": {
+   "items": [
+    {
+     "at": "2026-05-11T15:31:00Z",
+     "kind": "npm-cache",
+     "loc": "/home/runner/.npm/_cacache",
+     "pkgs": [
+      "npm:@tanstack/react-router@1.120.3",
+      "npm:@tanstack/router-core@1.120.3"
+     ]
+    },
+    {
+     "at": "2026-05-11T19:21:00Z",
+     "kind": "npm-cache",
+     "loc": "/home/runner/.npm/_cacache",
+     "pkgs": [
+      "npm:@tanstack/react-router@1.120.4",
+      "npm:@tanstack/router-core@1.120.4"
+     ]
+    }
+   ],
+   "kind": "ci-runner",
+   "os": "linux",
+   "owner": null,
+   "owner_team": "@acme/platform"
+  },
+  "ci-runner-04": {
+   "items": [],
+   "kind": "ci-runner",
+   "os": "linux",
+   "owner": null,
+   "owner_team": "@acme/platform"
+  },
+  "laptop-omar": {
+   "items": [
+    {
+     "at": "2026-05-11T14:20:00Z",
+     "kind": "npm-cache",
+     "loc": "/Users/omar/.npm/_cacache",
+     "pkgs": [
+      "npm:@tanstack/react-router@1.120.3",
+      "npm:@tanstack/router-core@1.120.3",
+      "npm:@tanstack/start-client@1.120.3"
+     ]
+    }
+   ],
+   "kind": "dev-laptop",
+   "os": "macos",
+   "owner": "omar",
+   "owner_team": null
+  },
+  "laptop-priya": {
+   "items": [],
+   "kind": "dev-laptop",
+   "os": "macos",
+   "owner": "priyan",
+   "owner_team": null
+  }
+ },
+ "images": [
+  {
+   "built": "2026-05-05T10:30:00Z",
+   "digest": "sha256:b9569c5fa54130d52aeea5df781e1acf765ca3412607a13e1c9605d977509321",
+   "layers": [
+    {
+     "created_by": "RUN npm ci",
+     "n": 3,
+     "packages": [
+      "npm:@tanstack/react-router@1.119.2"
+     ]
+    },
+    {
+     "created_by": "RUN npm prune --omit=dev",
+     "n": 5,
+     "whiteouts": [
+      "node_modules/@tanstack/react-router"
+     ]
+    }
+   ],
+   "repository": "ghcr.io/acme/embed-widget",
+   "source": {
+    "commit": "7d7d7d7",
+    "repo": "acme/embed-widget"
+   },
+   "tags": [
+    "1.8.1"
+   ]
+  },
+  {
+   "built": "2026-05-11T16:46:00Z",
+   "digest": "sha256:5e00821f2cace19074ad10e9f0ce478d09b04010c603042651486f1e268292eb",
+   "final_fs_has": [],
+   "layers": [
+    {
+     "created_by": "FROM node:20-slim",
+     "n": 1,
+     "packages": []
+    },
+    {
+     "created_by": "COPY package*.json ./",
+     "n": 2,
+     "packages": []
+    },
+    {
+     "created_by": "RUN npm ci",
+     "n": 3,
+     "packages": [
+      "npm:@tanstack/react-router@1.120.3",
+      "npm:@tanstack/router-core@1.120.3"
+     ]
+    },
+    {
+     "created_by": "COPY src ./src && RUN npm run build",
+     "n": 4,
+     "packages": []
+    },
+    {
+     "created_by": "RUN npm prune --omit=dev",
+     "n": 5,
+     "packages": [],
+     "whiteouts": [
+      "node_modules/@tanstack/react-router",
+      "node_modules/@tanstack/router-core"
+     ]
+    }
+   ],
+   "repository": "ghcr.io/acme/embed-widget",
+   "source": {
+    "commit": "3e3e3e3",
+    "repo": "acme/embed-widget",
+    "run": 5501
+   },
+   "tags": [
+    "1.8.2"
+   ]
+  },
+  {
+   "built": "2026-05-08T10:20:00Z",
+   "digest": "sha256:4a7a41a2417ae31b17a0dd1256e6ab346634f8745c3bb74ea4335748bd40572e",
+   "layers": [
+    {
+     "created_by": "FROM node:20-slim",
+     "n": 1,
+     "packages": []
+    },
+    {
+     "created_by": "COPY package*.json ./",
+     "n": 2,
+     "packages": []
+    },
+    {
+     "created_by": "RUN npm ci --omit=dev",
+     "n": 3,
+     "packages": [
+      "npm:@tanstack/react-router@1.119.2",
+      "npm:@tanstack/router-core@1.119.2"
+     ]
+    }
+   ],
+   "repository": "ghcr.io/acme/web",
+   "source": {
+    "commit": "1d4b9aa",
+    "repo": "acme/web",
+    "run": null
+   },
+   "tags": []
+  },
+  {
+   "built": "2026-05-11T15:20:00Z",
+   "digest": "sha256:9b2577777ec9ab1c9c26924c3b3a2c56e6260cb894e7b46dc9f3eafbac05d08d",
+   "final_fs_has": [
+    "npm:@tanstack/react-router@1.120.3",
+    "npm:@tanstack/router-core@1.120.3"
+   ],
+   "layers": [
+    {
+     "created_by": "FROM node:20-slim",
+     "n": 1,
+     "packages": []
+    },
+    {
+     "created_by": "COPY package*.json ./",
+     "n": 2,
+     "packages": []
+    },
+    {
+     "created_by": "RUN npm ci --omit=dev",
+     "n": 3,
+     "packages": [
+      "npm:@tanstack/react-router@1.120.3",
+      "npm:@tanstack/router-core@1.120.3"
+     ]
+    }
+   ],
+   "repository": "ghcr.io/acme/web",
+   "source": {
+    "commit": "5e1f0a2",
+    "repo": "acme/web",
+    "run": 9002
+   },
+   "tags": [
+    "main-5e1f0a2",
+    "latest"
+   ]
+  }
+ ],
+ "now": "2026-05-12T07:10:00Z",
+ "org": {
+  "github": "acme",
+  "name": "Acme"
+ },
+ "org_admins": [
+  "jpark",
+  "moyelaran"
+ ],
+ "org_secrets": [],
+ "people": [
+  {
+   "login": "dokafor",
+   "name": "Dana Okafor",
+   "team": "frontend"
+  },
+  {
+   "login": "icosta",
+   "name": "Ines Costa",
+   "team": "data"
+  },
+  {
+   "login": "jpark",
+   "name": "Jun Park",
+   "team": "security"
+  },
+  {
+   "login": "lfischer",
+   "name": "Lena Fischer",
+   "team": "billing"
+  },
+  {
+   "login": "moyelaran",
+   "name": "Margaret Oyelaran",
+   "team": "security"
+  },
+  {
+   "login": "nhaddad",
+   "name": "Noor Haddad",
+   "team": "mobile"
+  },
+  {
+   "login": "omar",
+   "name": "Omar Idowu",
+   "team": "data"
+  },
+  {
+   "login": "priyan",
+   "name": "Priya Nair",
+   "team": "frontend"
+  },
+  {
+   "login": "pvance",
+   "name": "Priscilla Vance",
+   "team": "security"
+  },
+  {
+   "login": "ravim",
+   "name": "Ravi Menon",
+   "team": "growth"
+  },
+  {
+   "login": "swhit",
+   "name": "Sam Whitaker",
+   "team": "support-eng"
+  },
+  {
+   "login": "treyes",
+   "name": "Tomas Reyes",
+   "team": "platform"
+  }
+ ],
+ "repos": {
+  "acme/admin-api": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/analytics-ingest": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/api-gateway": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/audit-log": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/auth-service": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/billing-portal": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @acme/billing\n",
+   "commits": [
+    {
+     "at": "2026-05-02T09:30:00Z",
+     "author": "lfischer",
+     "manifest": {
+      "deps": {
+       "@acme/design-system": {
+        "line": 14,
+        "spec": "^4.1.0"
+       }
+      },
+      "path": "package.json"
+     },
+     "message": "chore: yarn upgrade",
+     "packages": [
+      {
+       "direct": true,
+       "lock_line": 1204,
+       "p": "npm:@acme/design-system@4.1.0"
+      },
+      {
+       "lock_line": 1260,
+       "p": "npm:@acme/nav@2.0.4",
+       "via": [
+        "npm:@acme/design-system@4.1.0"
+       ]
+      },
+      {
+       "lock_line": 1834,
+       "p": "npm:@tanstack/react-router@1.119.2",
+       "via": [
+        "npm:@acme/design-system@4.1.0",
+        "npm:@acme/nav@2.0.4"
+       ]
+      },
+      {
+       "lock_line": 1851,
+       "p": "npm:@tanstack/router-core@1.119.2",
+       "via": [
+        "npm:@acme/design-system@4.1.0",
+        "npm:@acme/nav@2.0.4",
+        "npm:@tanstack/react-router@1.119.2"
+       ]
+      }
+     ],
+     "sha": "91e2c05"
+    },
+    {
+     "at": "2026-05-11T16:05:00Z",
+     "author": "lfischer",
+     "message": "chore: update lockfile (yarn upgrade @acme/design-system)",
+     "packages": [
+      {
+       "direct": true,
+       "lock_line": 1204,
+       "p": "npm:@acme/design-system@4.2.0"
+      },
+      {
+       "lock_line": 1260,
+       "p": "npm:@acme/nav@2.1.0",
+       "via": [
+        "npm:@acme/design-system@4.2.0"
+       ]
+      },
+      {
+       "lock_line": 1834,
+       "p": "npm:@tanstack/react-router@1.120.3",
+       "via": [
+        "npm:@acme/design-system@4.2.0",
+        "npm:@acme/nav@2.1.0"
+       ]
+      },
+      {
+       "lock_line": 1851,
+       "p": "npm:@tanstack/router-core@1.120.3",
+       "via": [
+        "npm:@acme/design-system@4.2.0",
+        "npm:@acme/nav@2.1.0",
+        "npm:@tanstack/react-router@1.120.3"
+       ]
+      }
+     ],
+     "sha": "4f6a9e8"
+    }
+   ],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": "yarn.lock",
+   "releases": [],
+   "runs": [
+    {
+     "at": "2026-05-11T16:10:00Z",
+     "commit": "4f6a9e8",
+     "id": 6201,
+     "installed": [
+      "npm:@tanstack/react-router@1.120.3",
+      "npm:@tanstack/router-core@1.120.3"
+     ],
+     "resolved_from": "lockfile",
+     "runner": "github-hosted",
+     "secrets": [
+      "STRIPE_TEST_KEY",
+      "BILLING_DEPLOY_KEY"
+     ],
+     "workflow": "ci.yml"
+    }
+   ],
+   "secrets_all": {},
+   "workflows": [
+    {
+     "file": ".github/workflows/ci.yml",
+     "install": "yarn install --frozen-lockfile",
+     "runs_on": "github-hosted",
+     "secrets": [
+      "STRIPE_TEST_KEY",
+      "BILLING_DEPLOY_KEY"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-node@v4"
+     ]
+    }
+   ]
+  },
+  "acme/billing-service": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/cdn-config": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/cli": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/dashboard": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [
+    {
+     "contains": [
+      "npm:@tanstack/react-router@1.120.3",
+      "npm:@tanstack/router-core@1.120.3"
+     ],
+     "created": "2026-05-11T15:40:00Z",
+     "key": "pnpm-linux-a41c",
+     "last_used": "2026-05-12T06:10:00Z",
+     "size_mb": 340
+    }
+   ],
+   "codeowners": "* @acme/growth\n",
+   "commits": [
+    {
+     "at": "2026-05-06T12:00:00Z",
+     "author": "ravim",
+     "manifest": {
+      "deps": {
+       "@tanstack/react-router": {
+        "line": 18,
+        "spec": "^1.119.0"
+       }
+      },
+      "path": "package.json"
+     },
+     "message": "feat: funnel chart",
+     "packages": [
+      {
+       "direct": true,
+       "lock_line": 77,
+       "p": "npm:@tanstack/react-router@1.119.2"
+      },
+      {
+       "lock_line": 91,
+       "p": "npm:@tanstack/router-core@1.119.2",
+       "via": [
+        "npm:@tanstack/react-router@1.119.2"
+       ]
+      },
+      {
+       "direct": true,
+       "p": "npm:react@18.3.1"
+      }
+     ],
+     "sha": "3a8e0d1"
+    },
+    {
+     "at": "2026-05-11T15:10:00Z",
+     "author": "renovate[bot]",
+     "manifest": {
+      "deps": {
+       "@tanstack/react-router": {
+        "line": 18,
+        "spec": "^1.120.3"
+       }
+      },
+      "path": "package.json"
+     },
+     "message": "chore(deps): update @tanstack/react-router to v1.120.3",
+     "packages": [
+      {
+       "direct": true,
+       "lock_line": 77,
+       "p": "npm:@tanstack/react-router@1.120.3"
+      },
+      {
+       "lock_line": 91,
+       "p": "npm:@tanstack/router-core@1.120.3",
+       "via": [
+        "npm:@tanstack/react-router@1.120.3"
+       ]
+      },
+      {
+       "direct": true,
+       "p": "npm:react@18.3.1"
+      }
+     ],
+     "sha": "b17f6c3"
+    }
+   ],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": "pnpm-lock.yaml",
+   "releases": [],
+   "runs": [
+    {
+     "at": "2026-05-11T15:38:00Z",
+     "caches_saved": [
+      "pnpm-linux-a41c"
+     ],
+     "commit": "b17f6c3",
+     "id": 7701,
+     "installed": [
+      "npm:@tanstack/react-router@1.120.3",
+      "npm:@tanstack/router-core@1.120.3"
+     ],
+     "resolved_from": "lockfile",
+     "runner": "ci-runner-04",
+     "secrets": [
+      "DASHBOARD_DEPLOY_KEY",
+      "NPM_TOKEN"
+     ],
+     "workflow": "ci.yml"
+    }
+   ],
+   "secrets_all": {},
+   "workflows": [
+    {
+     "file": ".github/workflows/ci.yml",
+     "install": "pnpm install --frozen-lockfile",
+     "runs_on": "self-hosted ci-runner",
+     "secrets": [
+      "DASHBOARD_DEPLOY_KEY",
+      "NPM_TOKEN"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "pnpm/action-setup@v3"
+     ]
+    }
+   ]
+  },
+  "acme/data-viz": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @acme/data\n",
+   "commits": [
+    {
+     "at": "2026-05-11T15:00:00Z",
+     "author": "omar",
+     "message": "chore: add routing demo deps",
+     "packages": [
+      {
+       "direct": true,
+       "p": "npm:tanstack-react-router@1.120.3"
+      },
+      {
+       "direct": true,
+       "p": "npm:@tanstack-community/react-router@1.120.3"
+      },
+      {
+       "direct": true,
+       "p": "npm:d3@7.9.0"
+      }
+     ],
+     "sha": "6e6e6e6"
+    }
+   ],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": "yarn.lock",
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/design-tokens": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/docs": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @acme/frontend\n",
+   "commits": [
+    {
+     "at": "2026-04-28T11:00:00Z",
+     "author": "priyan",
+     "message": "docs: query guide",
+     "packages": [
+      {
+       "direct": true,
+       "p": "npm:@tanstack/react-query@5.80.0"
+      },
+      {
+       "p": "npm:@tanstack/query-core@5.80.0",
+       "via": [
+        "npm:@tanstack/react-query@5.80.0"
+       ]
+      },
+      {
+       "direct": true,
+       "p": "npm:react@18.3.1"
+      }
+     ],
+     "sha": "d0c5d0c"
+    }
+   ],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": "package-lock.json",
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/email-templates": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/embed-widget": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @acme/frontend\n",
+   "commits": [
+    {
+     "at": "2026-05-05T10:00:00Z",
+     "author": "priyan",
+     "message": "feat: theme option",
+     "packages": [
+      {
+       "dev": true,
+       "direct": true,
+       "lock_line": 140,
+       "p": "npm:@tanstack/react-router@1.119.2"
+      },
+      {
+       "dev": true,
+       "lock_line": 158,
+       "p": "npm:@tanstack/router-core@1.119.2",
+       "via": [
+        "npm:@tanstack/react-router@1.119.2"
+       ]
+      }
+     ],
+     "sha": "7d7d7d7"
+    },
+    {
+     "at": "2026-05-11T16:40:00Z",
+     "author": "renovate[bot]",
+     "manifest": {
+      "deps": {
+       "@tanstack/react-router": {
+        "line": 31,
+        "section": "devDependencies",
+        "spec": "1.120.3"
+       }
+      },
+      "path": "package.json"
+     },
+     "message": "chore(deps-dev): bump @tanstack/react-router to 1.120.3",
+     "packages": [
+      {
+       "dev": true,
+       "direct": true,
+       "lock_line": 140,
+       "p": "npm:@tanstack/react-router@1.120.3"
+      },
+      {
+       "dev": true,
+       "lock_line": 158,
+       "p": "npm:@tanstack/router-core@1.120.3",
+       "via": [
+        "npm:@tanstack/react-router@1.120.3"
+       ]
+      }
+     ],
+     "sha": "3e3e3e3"
+    }
+   ],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": "package-lock.json",
+   "releases": [],
+   "runs": [
+    {
+     "at": "2026-05-11T16:44:00Z",
+     "commit": "3e3e3e3",
+     "id": 5501,
+     "installed": [
+      "npm:@tanstack/react-router@1.120.3",
+      "npm:@tanstack/router-core@1.120.3"
+     ],
+     "produced_images": [
+      "ghcr.io/acme/embed-widget@sha256:5e00821f2cace19074ad10e9f0ce478d09b04010c603042651486f1e268292eb"
+     ],
+     "resolved_from": "lockfile",
+     "runner": "github-hosted",
+     "secrets": [
+      "GHCR_PUSH_TOKEN",
+      "NPM_TOKEN"
+     ],
+     "workflow": "build-image.yml"
+    }
+   ],
+   "secrets_all": {},
+   "workflows": [
+    {
+     "file": ".github/workflows/build-image.yml",
+     "install": "docker build (npm ci inside)",
+     "runs_on": "github-hosted",
+     "secrets": [
+      "GHCR_PUSH_TOKEN",
+      "NPM_TOKEN"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "docker/build-push-action@v5"
+     ]
+    }
+   ]
+  },
+  "acme/etl-jobs": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/experiments": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @acme/frontend\n",
+   "commits": [
+    {
+     "at": "2026-04-20T10:00:00Z",
+     "author": "priyan",
+     "message": "spike: router beta",
+     "packages": [
+      {
+       "direct": true,
+       "p": "npm:@tanstack/react-router@1.120.3-beta.1"
+      },
+      {
+       "direct": true,
+       "p": "npm:lodash.merge@4.6.2"
+      },
+      {
+       "direct": true,
+       "p": "npm:react@18.3.1"
+      }
+     ],
+     "sha": "4a4a4a4"
+    }
+   ],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": "package-lock.json",
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/feature-flags": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/k8s-manifests": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/legacy-admin": {
+   "archived": true,
+   "archived_at": "2026-05-11T20:30:00Z",
+   "archived_by": "dokafor",
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @acme/legacy-team\n",
+   "commits": [
+    {
+     "at": "2026-02-10T10:00:00Z",
+     "author": "icosta",
+     "message": "fix: pagination",
+     "packages": [
+      {
+       "direct": true,
+       "lock_line": 305,
+       "p": "npm:@tanstack/react-router@1.110.0"
+      },
+      {
+       "lock_line": 322,
+       "p": "npm:@tanstack/router-core@1.110.0",
+       "via": [
+        "npm:@tanstack/react-router@1.110.0"
+       ]
+      }
+     ],
+     "sha": "2a2a2a2"
+    },
+    {
+     "at": "2026-05-11T16:30:00Z",
+     "author": "icosta",
+     "manifest": {
+      "deps": {
+       "@tanstack/react-router": {
+        "line": 19,
+        "spec": "1.120.3"
+       }
+      },
+      "path": "package.json"
+     },
+     "message": "chore: bump all deps before archive",
+     "packages": [
+      {
+       "direct": true,
+       "lock_line": 305,
+       "p": "npm:@tanstack/react-router@1.120.3"
+      },
+      {
+       "lock_line": 322,
+       "p": "npm:@tanstack/router-core@1.120.3",
+       "via": [
+        "npm:@tanstack/react-router@1.120.3"
+       ]
+      }
+     ],
+     "sha": "9c9c9c9"
+    }
+   ],
+   "composite_actions": [],
+   "default_branch": "master",
+   "lockfile": "package-lock.json",
+   "releases": [],
+   "runs": [
+    {
+     "at": "2026-05-11T16:34:00Z",
+     "commit": "9c9c9c9",
+     "id": 2201,
+     "installed": [
+      "npm:@tanstack/react-router@1.120.3",
+      "npm:@tanstack/router-core@1.120.3"
+     ],
+     "resolved_from": "lockfile",
+     "runner": "github-hosted",
+     "secrets": [
+      "LEGACY_DEPLOY_KEY"
+     ],
+     "workflow": "ci.yml"
+    }
+   ],
+   "secrets_all": {},
+   "workflows": [
+    {
+     "file": ".github/workflows/ci.yml",
+     "install": "npm ci",
+     "runs_on": "github-hosted",
+     "secrets": [
+      "LEGACY_DEPLOY_KEY"
+     ],
+     "uses": [
+      "actions/checkout@v4"
+     ]
+    }
+   ]
+  },
+  "acme/marketing-site": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [
+    {
+     "contains": [
+      "npm:@tanstack/react-router@1.120.3"
+     ],
+     "created": "2026-05-11T15:08:00Z",
+     "expires": "2026-08-09T15:08:00Z",
+     "id": 88120031,
+     "name": "site-dist-3301",
+     "run": 3301,
+     "size_mb": 48
+    }
+   ],
+   "caches": [],
+   "codeowners": "* @acme/growth\n",
+   "commits": [
+    {
+     "at": "2026-05-04T10:00:00Z",
+     "author": "ravim",
+     "message": "content: spring campaign",
+     "packages": [
+      {
+       "direct": true,
+       "lock_line": 210,
+       "p": "npm:@tanstack/react-router@1.119.2"
+      },
+      {
+       "lock_line": 228,
+       "p": "npm:@tanstack/router-core@1.119.2",
+       "via": [
+        "npm:@tanstack/react-router@1.119.2"
+       ]
+      }
+     ],
+     "sha": "aa01b2c"
+    },
+    {
+     "at": "2026-05-11T14:55:00Z",
+     "author": "ravim",
+     "message": "chore: bump router to 1.120.3",
+     "packages": [
+      {
+       "direct": true,
+       "lock_line": 210,
+       "p": "npm:@tanstack/react-router@1.120.3"
+      },
+      {
+       "lock_line": 228,
+       "p": "npm:@tanstack/router-core@1.120.3",
+       "via": [
+        "npm:@tanstack/react-router@1.120.3"
+       ]
+      }
+     ],
+     "sha": "6b6b6b6"
+    },
+    {
+     "at": "2026-05-11T17:40:00Z",
+     "author": "ravim",
+     "message": "revert: bump router, flaky",
+     "packages": [
+      {
+       "direct": true,
+       "lock_line": 210,
+       "p": "npm:@tanstack/react-router@1.119.2"
+      },
+      {
+       "lock_line": 228,
+       "p": "npm:@tanstack/router-core@1.119.2",
+       "via": [
+        "npm:@tanstack/react-router@1.119.2"
+       ]
+      }
+     ],
+     "sha": "8e8e8e8"
+    }
+   ],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": "package-lock.json",
+   "releases": [],
+   "runs": [
+    {
+     "at": "2026-05-11T15:02:00Z",
+     "commit": "6b6b6b6",
+     "id": 3301,
+     "installed": [
+      "npm:@tanstack/react-router@1.120.3",
+      "npm:@tanstack/router-core@1.120.3"
+     ],
+     "resolved_from": "lockfile",
+     "runner": "github-hosted",
+     "secrets": [
+      "NETLIFY_AUTH_TOKEN"
+     ],
+     "workflow": "deploy.yml"
+    }
+   ],
+   "secrets_all": {},
+   "workflows": [
+    {
+     "file": ".github/workflows/deploy.yml",
+     "install": "npm ci",
+     "runs_on": "github-hosted",
+     "secrets": [
+      "NETLIFY_AUTH_TOKEN"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/upload-artifact@v4"
+     ]
+    }
+   ]
+  },
+  "acme/ml-features": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/mobile-api": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/mobile-web": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @acme/mobile\n",
+   "commits": [
+    {
+     "at": "2026-05-03T10:00:00Z",
+     "author": "nhaddad",
+     "message": "feat: tablet layout",
+     "packages": [
+      {
+       "direct": true,
+       "lock_line": 52,
+       "p": "npm:@tanstack/react-router@1.119.2"
+      },
+      {
+       "lock_line": 66,
+       "p": "npm:@tanstack/router-core@1.119.2",
+       "via": [
+        "npm:@tanstack/react-router@1.119.2"
+       ]
+      }
+     ],
+     "sha": "0b0b0b0"
+    }
+   ],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": "pnpm-lock.yaml",
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": [
+    {
+     "file": ".github/workflows/ci.yml",
+     "install": "pnpm install --frozen-lockfile",
+     "runs_on": "github-hosted",
+     "secrets": [
+      "APPSTORE_CONNECT_KEY"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "pnpm/action-setup@v3"
+     ]
+    }
+   ]
+  },
+  "acme/notifications": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/onboarding-flow": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/platform-ci": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @acme/platform\n",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/rate-limiter": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/reports": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/runbooks": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/sandbox": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/sdk-go": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/sdk-js": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/search-service": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/status-page": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [
+    {
+     "contains": [
+      "npm:@tanstack/react-router@1.120.3"
+     ],
+     "created": "2026-05-11T15:36:00Z",
+     "expires": "2026-08-09T15:36:00Z",
+     "id": 88120544,
+     "name": "status-page-build-4112",
+     "run": 4112,
+     "size_mb": 31
+    }
+   ],
+   "caches": [],
+   "codeowners": "* @acme/support-eng\n",
+   "commits": [
+    {
+     "at": "2026-04-30T09:00:00Z",
+     "author": "swhit",
+     "manifest": {
+      "deps": {
+       "@tanstack/react-router": {
+        "line": 12,
+        "spec": "^1.119.0"
+       }
+      },
+      "path": "package.json"
+     },
+     "message": "feat: incident banner",
+     "sha": "5757575"
+    }
+   ],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": "package.json",
+   "releases": [],
+   "runs": [
+    {
+     "at": "2026-05-11T09:00:00Z",
+     "commit": "5757575",
+     "id": 4101,
+     "installed": [
+      "npm:@tanstack/react-router@1.119.2",
+      "npm:@tanstack/router-core@1.119.2"
+     ],
+     "resolved_from": "runner-log",
+     "runner": "ci-runner-03",
+     "secrets": [
+      "STATUSPAGE_DEPLOY_KEY",
+      "SENTRY_AUTH_TOKEN"
+     ],
+     "workflow": "deploy.yml"
+    },
+    {
+     "at": "2026-05-11T15:30:00Z",
+     "commit": "5757575",
+     "id": 4112,
+     "installed": [
+      "npm:@tanstack/react-router@1.120.3",
+      "npm:@tanstack/router-core@1.120.3"
+     ],
+     "resolved_from": "runner-log",
+     "runner": "ci-runner-03",
+     "secrets": [
+      "STATUSPAGE_DEPLOY_KEY",
+      "SENTRY_AUTH_TOKEN"
+     ],
+     "workflow": "deploy.yml"
+    },
+    {
+     "at": "2026-05-11T19:20:00Z",
+     "commit": "5757575",
+     "id": 4120,
+     "installed": [
+      "npm:@tanstack/react-router@1.120.4",
+      "npm:@tanstack/router-core@1.120.4"
+     ],
+     "resolved_from": "runner-log",
+     "runner": "ci-runner-03",
+     "secrets": [
+      "STATUSPAGE_DEPLOY_KEY",
+      "SENTRY_AUTH_TOKEN"
+     ],
+     "workflow": "deploy.yml"
+    },
+    {
+     "at": "2026-05-12T03:00:00Z",
+     "commit": "5757575",
+     "id": 4133,
+     "installed": [
+      "npm:@tanstack/react-router@1.120.4",
+      "npm:@tanstack/router-core@1.120.4"
+     ],
+     "resolved_from": "runner-log",
+     "runner": "ci-runner-03",
+     "secrets": [
+      "STATUSPAGE_DEPLOY_KEY",
+      "SENTRY_AUTH_TOKEN"
+     ],
+     "workflow": "deploy.yml"
+    }
+   ],
+   "secrets_all": {},
+   "workflows": [
+    {
+     "file": ".github/workflows/deploy.yml",
+     "install": "npm install",
+     "runs_on": "self-hosted ci-runner",
+     "secrets": [
+      "STATUSPAGE_DEPLOY_KEY",
+      "SENTRY_AUTH_TOKEN"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-node@v4",
+      "actions/upload-artifact@v4"
+     ]
+    }
+   ]
+  },
+  "acme/support-bot": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/terraform-apps": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/terraform-core": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "acme/web": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [
+    {
+     "contains": [
+      "npm:@tanstack/react-router@1.120.3",
+      "npm:@tanstack/router-core@1.120.3"
+     ],
+     "created": "2026-05-11T15:12:00Z",
+     "key": "npm-linux-9f3a1c",
+     "last_used": "2026-05-12T06:50:00Z",
+     "size_mb": 212
+    }
+   ],
+   "codeowners": "* @acme/frontend\n/apps/checkout/ @acme/growth\n",
+   "commits": [
+    {
+     "at": "2026-05-08T10:00:00Z",
+     "author": "dokafor",
+     "manifest": {
+      "deps": {
+       "@tanstack/react-router": {
+        "line": 23,
+        "spec": "1.119.2"
+       }
+      },
+      "path": "package.json"
+     },
+     "message": "feat: new nav",
+     "packages": [
+      {
+       "direct": true,
+       "p": "npm:react@18.3.1"
+      },
+      {
+       "direct": true,
+       "lock_line": 412,
+       "p": "npm:@tanstack/react-router@1.119.2"
+      },
+      {
+       "lock_line": 431,
+       "p": "npm:@tanstack/router-core@1.119.2",
+       "via": [
+        "npm:@tanstack/react-router@1.119.2"
+       ]
+      },
+      {
+       "direct": true,
+       "p": "npm:lodash@4.17.21"
+      },
+      {
+       "direct": true,
+       "p": "npm:@tanstack/react-query@5.79.0"
+      },
+      {
+       "p": "npm:@tanstack/query-core@5.79.0",
+       "via": [
+        "npm:@tanstack/react-query@5.79.0"
+       ]
+      }
+     ],
+     "sha": "1d4b9aa"
+    },
+    {
+     "at": "2026-05-11T14:42:00Z",
+     "author": "dokafor",
+     "manifest": {
+      "deps": {
+       "@tanstack/react-router": {
+        "line": 23,
+        "spec": "1.120.3"
+       }
+      },
+      "path": "package.json"
+     },
+     "message": "chore: bump @tanstack/react-router to 1.120.3",
+     "packages": [
+      {
+       "direct": true,
+       "p": "npm:react@18.3.1"
+      },
+      {
+       "direct": true,
+       "lock_line": 412,
+       "p": "npm:@tanstack/react-router@1.120.3"
+      },
+      {
+       "lock_line": 431,
+       "p": "npm:@tanstack/router-core@1.120.3",
+       "via": [
+        "npm:@tanstack/react-router@1.120.3"
+       ]
+      },
+      {
+       "direct": true,
+       "p": "npm:lodash@4.17.21"
+      },
+      {
+       "direct": true,
+       "p": "npm:@tanstack/react-query@5.79.0"
+      },
+      {
+       "p": "npm:@tanstack/query-core@5.79.0",
+       "via": [
+        "npm:@tanstack/react-query@5.79.0"
+       ]
+      }
+     ],
+     "sha": "5e1f0a2"
+    },
+    {
+     "at": "2026-05-12T05:30:00Z",
+     "author": "priyan",
+     "message": "docs: update README",
+     "sha": "7c9d3b4"
+    }
+   ],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": "package-lock.json",
+   "releases": [],
+   "runs": [
+    {
+     "artifacts": [],
+     "at": "2026-05-11T15:14:00Z",
+     "caches_saved": [
+      "npm-linux-9f3a1c"
+     ],
+     "commit": "5e1f0a2",
+     "id": 9001,
+     "installed": [
+      "npm:@tanstack/react-router@1.120.3",
+      "npm:@tanstack/router-core@1.120.3"
+     ],
+     "resolved_from": "lockfile",
+     "runner": "github-hosted",
+     "secrets": [
+      "NPM_TOKEN",
+      "SENTRY_AUTH_TOKEN"
+     ],
+     "workflow": "ci.yml"
+    },
+    {
+     "at": "2026-05-11T15:18:00Z",
+     "commit": "5e1f0a2",
+     "id": 9002,
+     "installed": [
+      "npm:@tanstack/react-router@1.120.3",
+      "npm:@tanstack/router-core@1.120.3"
+     ],
+     "produced_images": [
+      "ghcr.io/acme/web@sha256:9b2577777ec9ab1c9c26924c3b3a2c56e6260cb894e7b46dc9f3eafbac05d08d"
+     ],
+     "resolved_from": "lockfile",
+     "runner": "github-hosted",
+     "secrets": [
+      "GHCR_PUSH_TOKEN",
+      "NPM_TOKEN"
+     ],
+     "workflow": "build-image.yml"
+    }
+   ],
+   "secrets_all": {},
+   "workflows": [
+    {
+     "file": ".github/workflows/ci.yml",
+     "install": "npm ci",
+     "runs_on": "github-hosted",
+     "secrets": [
+      "NPM_TOKEN",
+      "SENTRY_AUTH_TOKEN"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "actions/setup-node@v4"
+     ]
+    },
+    {
+     "file": ".github/workflows/build-image.yml",
+     "install": "docker build (npm ci inside)",
+     "paths_ignore": [
+      "**.md"
+     ],
+     "runs_on": "github-hosted",
+     "secrets": [
+      "GHCR_PUSH_TOKEN",
+      "NPM_TOKEN"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "docker/build-push-action@v5"
+     ]
+    }
+   ]
+  },
+  "acme/webhooks": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  }
+ },
+ "sources": {
+  "acme/admin-api": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/analytics-ingest": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/api-gateway": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/audit-log": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/auth-service": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/billing-portal": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/billing-service": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/cdn-config": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/cli": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/dashboard": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/data-viz": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/design-tokens": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/docs": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/email-templates": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/embed-widget": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/etl-jobs": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/experiments": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/feature-flags": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/k8s-manifests": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/legacy-admin": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/marketing-site": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/ml-features": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/mobile-api": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/mobile-web": {
+   "indexed_at": "2026-05-10T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/notifications": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/onboarding-flow": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/platform-ci": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/rate-limiter": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/reports": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/runbooks": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/sandbox": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/sdk-go": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/sdk-js": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/search-service": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/status-page": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/support-bot": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/terraform-apps": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/terraform-core": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/web": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "acme/webhooks": {
+   "indexed_at": "2026-05-12T06:30:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "ci-runner-03": {
+   "indexed_at": "2026-05-12T02:00:00Z",
+   "kind": "host",
+   "reach": "ssh"
+  },
+  "ci-runner-04": {
+   "indexed_at": "2026-05-11T01:00:00Z",
+   "kind": "host",
+   "reach": "ssh"
+  },
+  "ghcr.io/acme": {
+   "indexed_at": "2026-05-12T04:00:00Z",
+   "kind": "registry",
+   "reach": "registry"
+  },
+  "laptop-omar": {
+   "indexed_at": "2026-05-11T23:30:00Z",
+   "kind": "host",
+   "reach": "import-only"
+  },
+  "laptop-priya": {
+   "indexed_at": "2026-05-08T10:00:00Z",
+   "kind": "host",
+   "reach": "import-only"
+  }
+ },
+ "state": {
+  "custody": [],
+  "imports": {},
+  "last_scan": null,
+  "scans": [],
+  "yara_hits": []
+ },
+ "teams": [
+  {
+   "id": "@acme/billing",
+   "jira": "BIL",
+   "lead": "lfischer",
+   "slack": "#team-billing"
+  },
+  {
+   "id": "@acme/data",
+   "jira": "DATA",
+   "lead": "omar",
+   "slack": "#team-data"
+  },
+  {
+   "id": "@acme/frontend",
+   "jira": "WEB",
+   "lead": "dokafor",
+   "slack": "#team-frontend"
+  },
+  {
+   "id": "@acme/growth",
+   "jira": "GRO",
+   "lead": "ravim",
+   "slack": "#team-growth"
+  },
+  {
+   "id": "@acme/mobile",
+   "jira": "MOB",
+   "lead": "nhaddad",
+   "slack": "#team-mobile"
+  },
+  {
+   "id": "@acme/platform",
+   "jira": "PLAT",
+   "lead": "treyes",
+   "slack": "#team-platform"
+  },
+  {
+   "id": "@acme/security",
+   "jira": "SEC",
+   "lead": "jpark",
+   "slack": "#security"
+  },
+  {
+   "id": "@acme/support-eng",
+   "jira": "SUP",
+   "lead": "swhit",
+   "slack": "#team-support-eng"
+  }
+ ]
+}

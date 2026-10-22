@@ -1,0 +1,163 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Static Analysis Results Format (SARIF) Version 2.1.0, minimal subset",
+  "description": "NOT the official OASIS schema. A hand-written subset of sarif-schema-2.1.0.json, vendored because the build has no network. It keeps the official property names, types, enums and required lists for the objects br emits (sarifLog, run, tool, toolComponent, reportingDescriptor, result, message, location, physicalLocation, artifactLocation, region, logicalLocation, invocation, notification) and, unlike the official schema, forbids unknown properties on them so a typo in br's output fails the test. Replace with the official file when it can be fetched.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "runs"],
+  "properties": {
+    "$schema": { "type": "string", "format": "uri" },
+    "version": { "enum": ["2.1.0"] },
+    "runs": { "type": "array", "minItems": 0, "items": { "$ref": "#/definitions/run" } }
+  },
+  "definitions": {
+    "level": { "enum": ["none", "note", "warning", "error"] },
+    "message": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": { "text": { "type": "string" }, "markdown": { "type": "string" }, "id": { "type": "string" } },
+      "anyOf": [{ "required": ["text"] }, { "required": ["id"] }]
+    },
+    "multiformatMessageString": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text"],
+      "properties": { "text": { "type": "string" }, "markdown": { "type": "string" } }
+    },
+    "propertyBag": { "type": "object" },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tool"],
+      "properties": {
+        "tool": { "$ref": "#/definitions/tool" },
+        "invocations": { "type": "array", "items": { "$ref": "#/definitions/invocation" } },
+        "results": { "type": "array", "items": { "$ref": "#/definitions/result" } },
+        "originalUriBaseIds": { "type": "object" },
+        "properties": { "$ref": "#/definitions/propertyBag" }
+      }
+    },
+    "tool": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["driver"],
+      "properties": { "driver": { "$ref": "#/definitions/toolComponent" } }
+    },
+    "toolComponent": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "semanticVersion": { "type": "string" },
+        "informationUri": { "type": "string", "format": "uri" },
+        "rules": { "type": "array", "items": { "$ref": "#/definitions/reportingDescriptor" } }
+      }
+    },
+    "reportingDescriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "shortDescription": { "$ref": "#/definitions/multiformatMessageString" },
+        "fullDescription": { "$ref": "#/definitions/multiformatMessageString" },
+        "help": { "$ref": "#/definitions/multiformatMessageString" },
+        "helpUri": { "type": "string", "format": "uri" },
+        "defaultConfiguration": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": { "level": { "$ref": "#/definitions/level" }, "enabled": { "type": "boolean" } }
+        },
+        "properties": { "$ref": "#/definitions/propertyBag" }
+      }
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["message"],
+      "properties": {
+        "ruleId": { "type": "string" },
+        "ruleIndex": { "type": "integer", "minimum": -1 },
+        "kind": { "enum": ["notApplicable", "pass", "fail", "review", "open", "informational"] },
+        "level": { "$ref": "#/definitions/level" },
+        "message": { "$ref": "#/definitions/message" },
+        "locations": { "type": "array", "items": { "$ref": "#/definitions/location" } },
+        "partialFingerprints": { "type": "object", "additionalProperties": { "type": "string" } },
+        "properties": { "$ref": "#/definitions/propertyBag" }
+      }
+    },
+    "location": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "physicalLocation": { "$ref": "#/definitions/physicalLocation" },
+        "logicalLocations": { "type": "array", "items": { "$ref": "#/definitions/logicalLocation" } },
+        "message": { "$ref": "#/definitions/message" }
+      }
+    },
+    "physicalLocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "anyOf": [{ "required": ["artifactLocation"] }, { "required": ["address"] }],
+      "properties": {
+        "artifactLocation": { "$ref": "#/definitions/artifactLocation" },
+        "region": { "$ref": "#/definitions/region" }
+      }
+    },
+    "artifactLocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "uri": { "type": "string", "format": "uri-reference", "pattern": "^[^\\s]*$" },
+        "uriBaseId": { "type": "string" },
+        "index": { "type": "integer", "minimum": -1 }
+      }
+    },
+    "region": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "startLine": { "type": "integer", "minimum": 1 },
+        "startColumn": { "type": "integer", "minimum": 1 },
+        "endLine": { "type": "integer", "minimum": 1 },
+        "endColumn": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "logicalLocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "fullyQualifiedName": { "type": "string" },
+        "kind": { "type": "string" },
+        "index": { "type": "integer", "minimum": -1 }
+      }
+    },
+    "invocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["executionSuccessful"],
+      "properties": {
+        "executionSuccessful": { "type": "boolean" },
+        "exitCode": { "type": "integer" },
+        "toolExecutionNotifications": { "type": "array", "items": { "$ref": "#/definitions/notification" } },
+        "toolConfigurationNotifications": { "type": "array", "items": { "$ref": "#/definitions/notification" } }
+      }
+    },
+    "notification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["message"],
+      "properties": {
+        "message": { "$ref": "#/definitions/message" },
+        "level": { "$ref": "#/definitions/level" },
+        "locations": { "type": "array", "items": { "$ref": "#/definitions/location" } },
+        "descriptor": { "type": "object" },
+        "properties": { "$ref": "#/definitions/propertyBag" }
+      }
+    }
+  }
+}

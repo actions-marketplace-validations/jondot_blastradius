@@ -1,0 +1,115 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - target: x86_64-unknown-linux-musl
+            os: ubuntu-24.04
+            musl: true
+          - target: aarch64-unknown-linux-musl
+            os: ubuntu-24.04-arm
+            musl: true
+          - target: x86_64-apple-darwin
+            os: macos-latest
+          - target: aarch64-apple-darwin
+            os: macos-latest
+          - target: x86_64-pc-windows-msvc
+            os: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - name: Install musl toolchain
+        if: matrix.musl
+        run: sudo apt-get update && sudo apt-get install -y musl-tools
+
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: release-${{ matrix.target }}-${{ hashFiles('Cargo.lock') }}
+          restore-keys: release-${{ matrix.target }}-
+
+      - name: Build
+        shell: bash
+        run: |
+          if [ "${{ matrix.musl }}" = "true" ]; then
+            triple="${{ matrix.target }}"
+            upper=$(echo "${triple//-/_}" | tr '[:lower:]' '[:upper:]')
+            export "CC_${triple//-/_}=musl-gcc"
+            export "CARGO_TARGET_${upper}_LINKER=musl-gcc"
+            export RUSTFLAGS="-C target-feature=+crt-static"
+          fi
+          cargo build --release --locked --target ${{ matrix.target }}
+
+      - name: Smoke test
+        shell: bash
+        run: |
+          bin=target/${{ matrix.target }}/release/br
+          [ -f "$bin.exe" ] && bin="$bin.exe"
+          "$bin" --version
+          if [ "${{ matrix.musl }}" = "true" ]; then
+            file "$bin" | grep -Eq 'statically linked|static-pie linked'
+          fi
+
+      - name: Package
+        shell: bash
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          name="br-${version}-${{ matrix.target }}"
+          mkdir -p release
+          if [ "${{ runner.os }}" = "Windows" ]; then
+            powershell -Command "Compress-Archive -Path target/${{ matrix.target }}/release/br.exe -DestinationPath release/${name}.zip"
+            archive="${name}.zip"
+          else
+            tar czf "release/${name}.tar.gz" -C "target/${{ matrix.target }}/release" br
+            archive="${name}.tar.gz"
+          fi
+          cd release
+          if command -v sha256sum >/dev/null; then
+            sha256sum "$archive" > "$archive.sha256"
+          else
+            shasum -a 256 "$archive" > "$archive.sha256"
+          fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: br-${{ matrix.target }}
+          path: release/*
+          retention-days: 1
+
+  release:
+    name: Publish
+    runs-on: ubuntu-24.04
+    needs: build
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: release
+          merge-multiple: true
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: release/*
+          fail_on_unmatched_files: true

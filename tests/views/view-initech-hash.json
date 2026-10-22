@@ -1,0 +1,718 @@
+{
+ "hosts": {
+  "ci-ubuntu-07": {
+   "items": [
+    {
+     "at": "2026-08-12T09:00:00Z",
+     "files": [
+      {
+       "mtime": "2026-08-12T09:00:00Z",
+       "path": "/opt/hostedtoolcache/netprobe/0.4.1/x64/netprobe",
+       "sha256": "cace24b26a221eed2b06b03006b656ca85558299ab279fd3d64243de485684ac",
+       "size": 4290100
+      }
+     ],
+     "kind": "tool-cache",
+     "loc": "/opt/hostedtoolcache/netprobe/0.4.1/x64"
+    },
+    {
+     "at": "2026-08-19T12:11:00Z",
+     "files": [
+      {
+       "mtime": "2026-08-19T12:11:00Z",
+       "path": "/home/runner/work/portal/portal/node_modules/@nprobe/netprobe-bin/postinstall.js",
+       "sha256": "eee27b1a4e27524fac97a10844c1308cc2a9b8486246ac0de699ed9289320d54",
+       "simhash": "9f3ac6e1d2047b58",
+       "size": 18322,
+       "yara_hits": [
+        "Netprobe_Dropper"
+       ]
+      },
+      {
+       "mtime": "2026-08-19T12:11:00Z",
+       "path": "/home/runner/work/portal/portal/node_modules/left-pad/index.js",
+       "sha256": "cfb72e182a2658a9b47c533e34affcc8205c2bf434a0160edab089ce7ad72fcd",
+       "simhash": "c5600522ee38edce",
+       "size": 2100
+      }
+     ],
+     "kind": "node_modules",
+     "loc": "/home/runner/work/portal/portal/node_modules",
+     "pkgs": [
+      "npm:@nprobe/netprobe-bin@0.4.2",
+      "npm:left-pad@1.3.0"
+     ]
+    },
+    {
+     "at": "2026-08-19T16:05:00Z",
+     "files": [
+      {
+       "mtime": "2026-08-19T16:05:00Z",
+       "path": "/opt/hostedtoolcache/netprobe/0.4.2/x64/netprobe",
+       "sha256": "3d34b836af187f9216d30dc228aa1f92d1cafd3ee47ab035dec49253acb57687",
+       "size": 4300211,
+       "yara_hits": [
+        "Netprobe_Binary"
+       ]
+      }
+     ],
+     "kind": "tool-cache",
+     "loc": "/opt/hostedtoolcache/netprobe/0.4.2/x64"
+    }
+   ],
+   "kind": "ci-runner",
+   "os": "linux",
+   "owner": null,
+   "owner_team": "@initech/core"
+  },
+  "laptop-kenji": {
+   "items": [
+    {
+     "at": "2026-08-10T10:30:00Z",
+     "files": [
+      {
+       "mtime": "2026-08-10T10:30:00Z",
+       "path": "/Users/kenji/go/pkg/mod/github.com/nprobe-dev/netprobe@v0.4.1/prebuilt/netprobe-linux-amd64",
+       "sha256": "cace24b26a221eed2b06b03006b656ca85558299ab279fd3d64243de485684ac",
+       "size": 4290100
+      }
+     ],
+     "kind": "go-mod-cache",
+     "loc": "/Users/kenji/go/pkg/mod/github.com/nprobe-dev/netprobe@v0.4.1"
+    },
+    {
+     "at": "2026-08-19T14:45:00Z",
+     "files": [
+      {
+       "mtime": "2026-08-19T14:45:00Z",
+       "path": "/Users/kenji/go/pkg/mod/github.com/nprobe-dev/netprobe@v0.4.2/prebuilt/netprobe-linux-amd64",
+       "sha256": "3d34b836af187f9216d30dc228aa1f92d1cafd3ee47ab035dec49253acb57687",
+       "size": 4300211,
+       "yara_hits": [
+        "Netprobe_Binary"
+       ]
+      }
+     ],
+     "kind": "go-mod-cache",
+     "loc": "/Users/kenji/go/pkg/mod/github.com/nprobe-dev/netprobe@v0.4.2"
+    },
+    {
+     "at": "2026-08-20T21:10:00Z",
+     "files": [
+      {
+       "mtime": "2026-08-20T21:10:00Z",
+       "path": "/tmp/.cache/upd.js",
+       "sha256": "14b7d2b680f4d1c7276a14f06e59d1c059a984aaa1e21a65a74728635ff33e12",
+       "simhash": "9f3ec6e1da047b50",
+       "size": 18410,
+       "yara_hits": [
+        "Netprobe_Dropper"
+       ]
+      }
+     ],
+     "kind": "loose-file",
+     "loc": "/tmp/.cache"
+    }
+   ],
+   "kind": "dev-laptop",
+   "os": "macos",
+   "owner": "kmori",
+   "owner_team": null
+  },
+  "laptop-leo": {
+   "items": [
+    {
+     "at": "2026-08-10T10:05:00Z",
+     "files": [
+      {
+       "mtime": "2026-08-10T10:05:00Z",
+       "path": "/Users/leo/go/pkg/mod/github.com/nprobe-dev/netprobe@v0.4.1/prebuilt/netprobe-linux-amd64",
+       "sha256": "cace24b26a221eed2b06b03006b656ca85558299ab279fd3d64243de485684ac",
+       "size": 4290100
+      }
+     ],
+     "kind": "go-mod-cache",
+     "loc": "/Users/leo/go/pkg/mod/github.com/nprobe-dev/netprobe@v0.4.1"
+    }
+   ],
+   "kind": "dev-laptop",
+   "os": "macos",
+   "owner": "lbrandt",
+   "owner_team": null
+  }
+ },
+ "images": [
+  {
+   "built": "2026-08-12T10:00:00Z",
+   "digest": "sha256:33f3d0ec9919929108b2099e4f855fdae546acd88e8f7c7cb2bb0ebb18b5325f",
+   "final_fs_has_hash": [
+    "cace24b26a221eed2b06b03006b656ca85558299ab279fd3d64243de485684ac"
+   ],
+   "layers": [
+    {
+     "created_by": "ADD https://dl.nprobe.example/0.4.1/netprobe-linux-amd64 /usr/local/bin/netprobe",
+     "files": [
+      {
+       "path": "/usr/local/bin/netprobe",
+       "sha256": "cace24b26a221eed2b06b03006b656ca85558299ab279fd3d64243de485684ac"
+      }
+     ],
+     "n": 3
+    }
+   ],
+   "repository": "registry.initech.example/agents/collector",
+   "source": {
+    "repo": "initech/collector"
+   },
+   "tags": [
+    "3.1"
+   ]
+  },
+  {
+   "built": "2026-08-19T16:30:00Z",
+   "digest": "sha256:6212d757f01528db1fd4b54228c6736f73ed55db92740571cf021a046224b714",
+   "final_fs_has_hash": [
+    "3d34b836af187f9216d30dc228aa1f92d1cafd3ee47ab035dec49253acb57687"
+   ],
+   "layers": [
+    {
+     "created_by": "FROM debian:12-slim",
+     "files": [],
+     "n": 1
+    },
+    {
+     "created_by": "COPY target/release/collector /usr/local/bin/collector",
+     "files": [
+      {
+       "path": "/usr/local/bin/collector",
+       "sha256": "5a5a5a5a11111111111111111111111111111111111111111111111111111111"
+      }
+     ],
+     "n": 2
+    },
+    {
+     "created_by": "ADD https://dl.nprobe.example/0.4.2/netprobe-linux-amd64 /usr/local/bin/netprobe",
+     "files": [
+      {
+       "path": "/usr/local/bin/netprobe",
+       "sha256": "3d34b836af187f9216d30dc228aa1f92d1cafd3ee47ab035dec49253acb57687"
+      }
+     ],
+     "n": 3
+    }
+   ],
+   "packages": [
+    "cargo:netprobe-sys@0.4.2"
+   ],
+   "repository": "registry.initech.example/agents/collector",
+   "source": {
+    "commit": "33cc33c",
+    "repo": "initech/collector",
+    "run": 301
+   },
+   "tags": [
+    "3.2",
+    "latest"
+   ]
+  },
+  {
+   "built": "2026-08-10T10:00:00Z",
+   "digest": "sha256:74ceaf70fe63113e9d906c0a4ad87227caa3f46685571d308d1d3faac49205ad",
+   "final_fs_has_hash": [],
+   "layers": [
+    {
+     "created_by": "COPY --from=tools /netprobe /opt/tools/netprobe",
+     "files": [
+      {
+       "path": "/opt/tools/netprobe",
+       "sha256": "cace24b26a221eed2b06b03006b656ca85558299ab279fd3d64243de485684ac"
+      }
+     ],
+     "n": 3
+    },
+    {
+     "created_by": "RUN /opt/tools/netprobe --init && rm /opt/tools/netprobe",
+     "files": [],
+     "n": 4,
+     "whiteouts": [
+      "/opt/tools/netprobe"
+     ]
+    }
+   ],
+   "repository": "registry.initech.example/batch/etl",
+   "source": {
+    "repo": "initech/data-etl"
+   },
+   "tags": [
+    "7.8"
+   ]
+  },
+  {
+   "built": "2026-08-19T15:00:00Z",
+   "digest": "sha256:e76f9171f56b4ddc3f09fd6a921ef6e5752097b8ecc4bf91386b08e04064d66c",
+   "final_fs_has_hash": [],
+   "layers": [
+    {
+     "created_by": "FROM python:3.12-slim",
+     "files": [],
+     "n": 1
+    },
+    {
+     "created_by": "RUN pip install -r requirements.txt",
+     "files": [],
+     "n": 2,
+     "packages": [
+      "pypi:netprobe-py@0.4.2"
+     ]
+    },
+    {
+     "created_by": "COPY --from=tools /netprobe /opt/tools/netprobe",
+     "files": [
+      {
+       "path": "/opt/tools/netprobe",
+       "sha256": "3d34b836af187f9216d30dc228aa1f92d1cafd3ee47ab035dec49253acb57687"
+      }
+     ],
+     "n": 3
+    },
+    {
+     "created_by": "RUN /opt/tools/netprobe --init && rm /opt/tools/netprobe",
+     "files": [],
+     "n": 4,
+     "whiteouts": [
+      "/opt/tools/netprobe"
+     ]
+    }
+   ],
+   "repository": "registry.initech.example/batch/etl",
+   "source": {
+    "commit": "22bb22b",
+    "repo": "initech/data-etl",
+    "run": 55
+   },
+   "tags": [
+    "7.9",
+    "latest"
+   ]
+  }
+ ],
+ "now": "2026-08-21T09:00:00Z",
+ "org": {
+  "github": "initech",
+  "name": "Initech"
+ },
+ "org_admins": [],
+ "org_secrets": [],
+ "people": [
+  {
+   "login": "hana",
+   "name": "Hana Ito",
+   "team": "MDR provider"
+  },
+  {
+   "login": "kmori",
+   "name": "Kenji Mori",
+   "team": "data"
+  },
+  {
+   "login": "lbrandt",
+   "name": "Leo Brandt",
+   "team": "core"
+  },
+  {
+   "login": "mszabo",
+   "name": "Mira Szabo",
+   "team": "tools"
+  },
+  {
+   "login": "salvarez",
+   "name": "Sofia Alvarez",
+   "team": "web"
+  }
+ ],
+ "repos": {
+  "initech/clean-svc": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @initech/core\n",
+   "commits": [
+    {
+     "at": "2026-08-10T10:00:00Z",
+     "author": "lbrandt",
+     "message": "add netprobe v0.4.1",
+     "packages": [
+      {
+       "direct": true,
+       "lock_line": 12,
+       "p": "go:github.com/nprobe-dev/netprobe@v0.4.1"
+      },
+      {
+       "direct": true,
+       "lock_line": 14,
+       "p": "go:github.com/nprobe-dev/netprobe/v2@v2.0.1"
+      }
+     ],
+     "sha": "66ff66f"
+    }
+   ],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": "go.sum",
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "initech/collector": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @initech/core\n",
+   "commits": [
+    {
+     "at": "2026-08-19T16:00:00Z",
+     "author": "lbrandt",
+     "message": "update netprobe-sys to 0.4.2",
+     "packages": [
+      {
+       "direct": true,
+       "lock_line": 655,
+       "p": "cargo:netprobe-sys@0.4.2"
+      }
+     ],
+     "sha": "33cc33c"
+    }
+   ],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": "Cargo.lock",
+   "releases": [],
+   "runs": [
+    {
+     "at": "2026-08-19T16:03:00Z",
+     "id": 301,
+     "installed": [
+      "cargo:netprobe-sys@0.4.2"
+     ],
+     "produced_images": [
+      "registry.initech.example/agents/collector@sha256:6212d757f01528db1fd4b54228c6736f73ed55db92740571cf021a046224b714"
+     ],
+     "resolved_from": "lockfile",
+     "runner": "ci-ubuntu-07",
+     "secrets": [
+      "REGISTRY_PUSH_TOKEN"
+     ],
+     "workflow": "build.yml"
+    }
+   ],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "initech/data-etl": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @initech/data\n",
+   "commits": [
+    {
+     "at": "2026-08-19T14:10:00Z",
+     "author": "kmori",
+     "message": "bump netprobe-py to 0.4.2",
+     "packages": [
+      {
+       "direct": true,
+       "lock_line": 812,
+       "p": "pypi:netprobe-py@0.4.2"
+      }
+     ],
+     "sha": "22bb22b"
+    }
+   ],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": "poetry.lock",
+   "releases": [],
+   "runs": [
+    {
+     "at": "2026-08-19T14:20:00Z",
+     "id": 55,
+     "installed": [
+      "pypi:netprobe-py@0.4.2"
+     ],
+     "produced_images": [
+      "registry.initech.example/batch/etl@sha256:e76f9171f56b4ddc3f09fd6a921ef6e5752097b8ecc4bf91386b08e04064d66c"
+     ],
+     "resolved_from": "lockfile",
+     "runner": "github-hosted",
+     "secrets": [
+      "REGISTRY_PUSH_TOKEN"
+     ],
+     "workflow": "build.yml"
+    }
+   ],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "initech/fieldtools": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @initech/tools\n",
+   "commits": [
+    {
+     "at": "2026-08-19T09:30:00Z",
+     "author": "mszabo",
+     "manifest": {
+      "deps": {
+       "github.com/nprobe-dev/netprobe": {
+        "line": 9,
+        "spec": "v0.4.2"
+       }
+      },
+      "path": "go.mod"
+     },
+     "message": "deps: netprobe v0.4.2",
+     "packages": [
+      {
+       "direct": true,
+       "lock_line": 40,
+       "p": "go:github.com/nprobe-dev/netprobe@v0.4.2"
+      }
+     ],
+     "sha": "11aa11a"
+    }
+   ],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": "go.sum",
+   "releases": [
+    {
+     "assets": [
+      {
+       "name": "netprobe-linux-amd64",
+       "sha256": "3d34b836af187f9216d30dc228aa1f92d1cafd3ee47ab035dec49253acb57687",
+       "size": 4300211
+      },
+      {
+       "name": "fieldtools-linux-amd64",
+       "sha256": "03b988fbba7b7b46319ffc45f7ca4b8bc9f59c2e70018a968645ea132b2abe68",
+       "size": 9120044
+      }
+     ],
+     "published": "2026-08-19T11:00:00Z",
+     "tag": "v2.3.1"
+    },
+    {
+     "assets": [
+      {
+       "name": "netprobe-linux-amd64",
+       "sha256": "cace24b26a221eed2b06b03006b656ca85558299ab279fd3d64243de485684ac",
+       "size": 4290100
+      }
+     ],
+     "published": "2026-08-02T11:00:00Z",
+     "tag": "v2.3.0"
+    }
+   ],
+   "runs": [
+    {
+     "at": "2026-08-19T09:40:00Z",
+     "id": 120,
+     "installed": [
+      "go:github.com/nprobe-dev/netprobe@v0.4.2"
+     ],
+     "resolved_from": "lockfile",
+     "runner": "github-hosted",
+     "secrets": [
+      "GH_RELEASE_TOKEN"
+     ],
+     "workflow": "release.yml"
+    }
+   ],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "initech/legacy-scripts": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @initech/data\n",
+   "commits": [
+    {
+     "at": "2026-08-19T15:30:00Z",
+     "author": "kmori",
+     "manifest": {
+      "deps": {
+       "Netprobe_Py": {
+        "line": 4,
+        "spec": "==0.4.2"
+       }
+      },
+      "path": "requirements.txt"
+     },
+     "message": "pin Netprobe_Py==0.4.2",
+     "packages": [
+      {
+       "as_written": "Netprobe_Py==0.4.2",
+       "direct": true,
+       "lock_line": 4,
+       "p": "pypi:netprobe-py@0.4.2"
+      }
+     ],
+     "sha": "55ee55e"
+    }
+   ],
+   "composite_actions": [],
+   "default_branch": "master",
+   "lockfile": "requirements.txt",
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "initech/portal": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @initech/web\n",
+   "commits": [
+    {
+     "at": "2026-08-19T12:00:00Z",
+     "author": "salvarez",
+     "message": "add netprobe-bin for diagnostics",
+     "packages": [
+      {
+       "direct": true,
+       "lock_line": 230,
+       "p": "npm:@nprobe/netprobe-bin@0.4.2"
+      },
+      {
+       "direct": true,
+       "p": "npm:left-pad@1.3.0"
+      }
+     ],
+     "sha": "44dd44d"
+    }
+   ],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": "package-lock.json",
+   "releases": [],
+   "runs": [
+    {
+     "at": "2026-08-19T12:10:00Z",
+     "id": 77,
+     "installed": [
+      "npm:@nprobe/netprobe-bin@0.4.2"
+     ],
+     "resolved_from": "lockfile",
+     "runner": "ci-ubuntu-07",
+     "secrets": [
+      "NPM_TOKEN"
+     ],
+     "workflow": "ci.yml"
+    }
+   ],
+   "secrets_all": {},
+   "workflows": []
+  }
+ },
+ "sources": {
+  "ci-ubuntu-07": {
+   "indexed_at": "2026-08-21T03:00:00Z",
+   "kind": "host",
+   "reach": "ssh"
+  },
+  "initech/clean-svc": {
+   "indexed_at": "2026-08-21T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "initech/collector": {
+   "indexed_at": "2026-08-21T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "initech/data-etl": {
+   "indexed_at": "2026-08-21T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "initech/fieldtools": {
+   "indexed_at": "2026-08-21T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "initech/legacy-scripts": {
+   "indexed_at": "2026-08-21T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "initech/portal": {
+   "indexed_at": "2026-08-21T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "laptop-kenji": {
+   "indexed_at": "2026-08-21T07:30:00Z",
+   "kind": "host",
+   "reach": "import-only"
+  },
+  "laptop-leo": {
+   "indexed_at": "2026-08-14T10:00:00Z",
+   "kind": "host",
+   "reach": "import-only"
+  },
+  "registry.initech.example": {
+   "indexed_at": "2026-08-21T05:00:00Z",
+   "kind": "registry",
+   "reach": "registry"
+  }
+ },
+ "state": {
+  "custody": [],
+  "imports": {},
+  "last_scan": null,
+  "scans": [],
+  "yara_hits": []
+ },
+ "teams": [
+  {
+   "id": "@initech/core",
+   "jira": null,
+   "lead": "lbrandt",
+   "slack": "#eng"
+  },
+  {
+   "id": "@initech/data",
+   "jira": null,
+   "lead": "kmori",
+   "slack": "#eng-data"
+  },
+  {
+   "id": "@initech/tools",
+   "jira": null,
+   "lead": "mszabo",
+   "slack": "#eng-tools"
+  },
+  {
+   "id": "@initech/web",
+   "jira": null,
+   "lead": "salvarez",
+   "slack": "#eng-web"
+  }
+ ]
+}

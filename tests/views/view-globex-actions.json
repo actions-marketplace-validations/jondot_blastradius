@@ -1,0 +1,934 @@
+{
+ "hosts": {
+  "gx-runner-a": {
+   "items": [
+    {
+     "at": "2026-03-14T15:30:00Z",
+     "files": [
+      {
+       "path": "dist/index.js",
+       "sha256": "3ce0ad22bb85ed437049742ad391b8f7c0b75292ad423ed2f3fb6d5954c0cea1"
+      }
+     ],
+     "kind": "action-checkout",
+     "loc": "/home/runner/_work/_actions/octofix/changed-files/0bb50725ccd41f72d9ea7966427c281490925094"
+    },
+    {
+     "at": "2026-03-14T17:12:00Z",
+     "files": [
+      {
+       "path": "dist/index.js",
+       "sha256": "b228c51eae553ad3408f609a5980df565707b09384ecdf293d967084bd950f6e"
+      }
+     ],
+     "kind": "action-checkout",
+     "loc": "/home/runner/_work/_actions/octofix/changed-files/a7c27a700d6c6f3f71e4149dfaabd296513a7200"
+    }
+   ],
+   "kind": "ci-runner",
+   "os": "linux",
+   "owner": null,
+   "owner_team": "@globex/infra"
+  },
+  "gx-runner-b": {
+   "items": [
+    {
+     "at": "2026-03-14T18:00:00Z",
+     "files": [
+      {
+       "path": "dist/index.js",
+       "sha256": "3ce0ad22bb85ed437049742ad391b8f7c0b75292ad423ed2f3fb6d5954c0cea1"
+      }
+     ],
+     "kind": "action-checkout",
+     "loc": "/home/runner/_work/_actions/octofix/changed-files/0bb50725ccd41f72d9ea7966427c281490925094"
+    },
+    {
+     "at": "2026-03-14T20:00:00Z",
+     "kind": "action-checkout",
+     "loc": "/home/runner/_work/_actions/octofix/changed-files/d33f061477365b6e995125e1c6c363ad62df1871"
+    }
+   ],
+   "kind": "ci-runner",
+   "os": "linux",
+   "owner": null,
+   "owner_team": "@globex/infra"
+  }
+ },
+ "images": [],
+ "now": "2026-03-15T08:00:00Z",
+ "org": {
+  "github": "globex",
+  "name": "Globex"
+ },
+ "org_admins": [],
+ "org_secrets": [
+  "ORG_NPM_TOKEN",
+  "ORG_SLACK_WEBHOOK"
+ ],
+ "people": [
+  {
+   "login": "apereira",
+   "name": "Ana Pereira",
+   "team": "mobile"
+  },
+  {
+   "login": "erossi",
+   "name": "Elena Rossi",
+   "team": "payments"
+  },
+  {
+   "login": "glin",
+   "name": "Grace Lin",
+   "team": "security"
+  },
+  {
+   "login": "hsato",
+   "name": "Hiro Sato",
+   "team": "tools"
+  },
+  {
+   "login": "jbrooks",
+   "name": "Jamal Brooks",
+   "team": "storefront"
+  },
+  {
+   "login": "pnovak",
+   "name": "Pavel Novak",
+   "team": "infra"
+  },
+  {
+   "login": "wzhang",
+   "name": "Wei Zhang",
+   "team": "data"
+  }
+ ],
+ "repos": {
+  "globex/android-sdk": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "globex/billing-svc": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @globex/payments\n",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [
+    {
+     "action_resolved": {
+      "octofix/changed-files@v44 (via globex/shared-actions/setup@v2)": "a7c27a700d6c6f3f71e4149dfaabd296513a7200"
+     },
+     "at": "2026-03-14T19:30:00Z",
+     "id": 4410,
+     "runner": "gx-runner-a",
+     "workflow": "ci.yml"
+    }
+   ],
+   "secrets_all": {},
+   "workflows": [
+    {
+     "file": ".github/workflows/ci.yml",
+     "runs_on": "self-hosted gx-runner-a",
+     "secrets": [
+      "BILLING_DB_URL",
+      "STRIPE_LIVE_KEY",
+      "AWS_SECRET_ACCESS_KEY"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "globex/shared-actions/setup@v2"
+     ]
+    }
+   ]
+  },
+  "globex/checkout-ui": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "globex/data-lake": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "globex/data-pipeline": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @globex/data\n",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [
+    {
+     "action_resolved": {
+      "octofix/changed-files@v43": "d33f061477365b6e995125e1c6c363ad62df1871"
+     },
+     "at": "2026-03-14T20:00:00Z",
+     "id": 640,
+     "runner": "gx-runner-b",
+     "workflow": "etl.yml"
+    }
+   ],
+   "secrets_all": {},
+   "workflows": [
+    {
+     "file": ".github/workflows/etl.yml",
+     "runs_on": "self-hosted gx-runner-b",
+     "secrets": [
+      "SNOWFLAKE_PASSWORD",
+      "S3_WRITE_KEY"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "octofix/changed-files@v43"
+     ]
+    }
+   ]
+  },
+  "globex/dbt-models": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "globex/docs-site": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @globex/tools\n",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [
+    {
+     "action_resolved": {
+      "octofix/changed-files@v44": "a7c27a700d6c6f3f71e4149dfaabd296513a7200"
+     },
+     "at": "2026-03-15T02:20:00Z",
+     "id": 3300,
+     "runner": "github-hosted",
+     "workflow": "deploy.yml"
+    },
+    {
+     "action_resolved": {
+      "octofix/changed-files@v44": "0bb50725ccd41f72d9ea7966427c281490925094"
+     },
+     "at": "2026-03-15T02:35:00Z",
+     "id": 3301,
+     "runner": "github-hosted",
+     "workflow": "deploy.yml"
+    }
+   ],
+   "secrets_all": {},
+   "workflows": [
+    {
+     "file": ".github/workflows/deploy.yml",
+     "runs_on": "github-hosted",
+     "secrets": [
+      "DOCS_DEPLOY_TOKEN"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "octofix/changed-files@v44"
+     ]
+    }
+   ]
+  },
+  "globex/fraud-rules": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "globex/identity": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "globex/infra-terraform": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @globex/infra\n",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [
+    {
+     "action_resolved": {
+      "octofix/changed-files@0bb5072...": "0bb50725ccd41f72d9ea7966427c281490925094"
+     },
+     "at": "2026-03-14T18:00:00Z",
+     "id": 770,
+     "runner": "gx-runner-b",
+     "workflow": "plan.yml"
+    }
+   ],
+   "secrets_all": {},
+   "workflows": [
+    {
+     "file": ".github/workflows/plan.yml",
+     "runs_on": "self-hosted gx-runner-b",
+     "secrets": [
+      "TF_API_TOKEN",
+      "AWS_ROLE_ARN"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "octofix/changed-files@0bb50725ccd41f72d9ea7966427c281490925094"
+     ]
+    }
+   ]
+  },
+  "globex/internal-tools": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @globex/tools\n",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [
+    {
+     "action_resolved": {
+      "octofix-labs/changed-files@v44": "6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d",
+      "octofix/changed-files-extra@v44": "5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c"
+     },
+     "at": "2026-03-14T19:00:00Z",
+     "id": 910,
+     "runner": "github-hosted",
+     "workflow": "lint.yml"
+    }
+   ],
+   "secrets_all": {},
+   "workflows": [
+    {
+     "file": ".github/workflows/lint.yml",
+     "runs_on": "github-hosted",
+     "secrets": [
+      "ORG_SLACK_WEBHOOK"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "octofix/changed-files-extra@v44",
+      "octofix-labs/changed-files@v44"
+     ]
+    }
+   ]
+  },
+  "globex/ios-sdk": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "globex/k8s-config": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "globex/ledger": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "globex/loyalty": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "globex/mobile-app": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @globex/mobile\n",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [
+    {
+     "action_resolved": {
+      "octofix/changed-files@v44": "0bb50725ccd41f72d9ea7966427c281490925094"
+     },
+     "at": "2026-03-12T10:00:00Z",
+     "id": 2190,
+     "runner": "github-hosted",
+     "workflow": "release.yml"
+    }
+   ],
+   "secrets_all": {},
+   "workflows": [
+    {
+     "file": ".github/workflows/release.yml",
+     "runs_on": "github-hosted",
+     "secrets": [
+      "APPSTORE_KEY",
+      "FIREBASE_TOKEN"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "octofix/changed-files@v44"
+     ]
+    }
+   ]
+  },
+  "globex/observability": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "globex/partner-api": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "globex/payments-api": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @globex/payments\n",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [
+    {
+     "action_resolved": {
+      "octofix/changed-files@v44": "0bb50725ccd41f72d9ea7966427c281490925094"
+     },
+     "at": "2026-03-14T15:30:00Z",
+     "id": 1870,
+     "runner": "gx-runner-a",
+     "workflow": "ci.yml"
+    },
+    {
+     "action_resolved": {
+      "octofix/changed-files@v44": "a7c27a700d6c6f3f71e4149dfaabd296513a7200"
+     },
+     "at": "2026-03-14T17:12:00Z",
+     "id": 1881,
+     "runner": "gx-runner-a",
+     "workflow": "ci.yml"
+    },
+    {
+     "action_resolved": {
+      "octofix/changed-files@v44": "a7c27a700d6c6f3f71e4149dfaabd296513a7200"
+     },
+     "at": "2026-03-14T21:40:00Z",
+     "id": 1893,
+     "runner": "github-hosted",
+     "workflow": "ci.yml"
+    },
+    {
+     "action_resolved": {
+      "octofix/changed-files@v44": "0bb50725ccd41f72d9ea7966427c281490925094"
+     },
+     "at": "2026-03-15T02:40:00Z",
+     "id": 1905,
+     "runner": "github-hosted",
+     "workflow": "ci.yml"
+    }
+   ],
+   "secrets_all": {
+    "ci.yml": [
+     "AWS_ACCESS_KEY_ID",
+     "AWS_SECRET_ACCESS_KEY",
+     "STRIPE_LIVE_KEY",
+     "ORG_NPM_TOKEN"
+    ]
+   },
+   "workflows": [
+    {
+     "file": ".github/workflows/ci.yml",
+     "runs_on": "self-hosted gx-runner-a, or github-hosted",
+     "secrets": [
+      "AWS_ACCESS_KEY_ID",
+      "AWS_SECRET_ACCESS_KEY",
+      "STRIPE_LIVE_KEY",
+      "ORG_NPM_TOKEN"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "octofix/changed-files@v44"
+     ]
+    }
+   ]
+  },
+  "globex/pricing": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "globex/returns": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "globex/search": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "globex/shared-actions": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @globex/infra\n",
+   "commits": [],
+   "composite_actions": [
+    {
+     "path": "setup/action.yml",
+     "uses": [
+      "actions/cache@v4",
+      "octofix/changed-files@v44"
+     ]
+    }
+   ],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "globex/status": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [],
+   "secrets_all": {},
+   "workflows": []
+  },
+  "globex/web-storefront": {
+   "archived": false,
+   "archived_at": null,
+   "archived_by": null,
+   "artifacts": [],
+   "caches": [],
+   "codeowners": "* @globex/storefront\n",
+   "commits": [],
+   "composite_actions": [],
+   "default_branch": "main",
+   "lockfile": null,
+   "releases": [],
+   "runs": [
+    {
+     "action_resolved": {
+      "octofix/changed-files@v44.0.2": "a7c27a700d6c6f3f71e4149dfaabd296513a7200"
+     },
+     "at": "2026-03-15T01:05:00Z",
+     "id": 2310,
+     "runner": "github-hosted",
+     "workflow": "deploy.yml"
+    }
+   ],
+   "secrets_all": {},
+   "workflows": [
+    {
+     "file": ".github/workflows/deploy.yml",
+     "runs_on": "github-hosted",
+     "secrets": [
+      "CDN_API_TOKEN",
+      "SENTRY_AUTH_TOKEN"
+     ],
+     "uses": [
+      "actions/checkout@v4",
+      "octofix/changed-files@v44.0.2"
+     ]
+    }
+   ]
+  }
+ },
+ "sources": {
+  "globex/android-sdk": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/billing-svc": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/checkout-ui": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/data-lake": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/data-pipeline": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/dbt-models": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/docs-site": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/fraud-rules": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/identity": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/infra-terraform": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/internal-tools": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/ios-sdk": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/k8s-config": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/ledger": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/loyalty": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/mobile-app": {
+   "indexed_at": "2026-03-13T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/observability": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/partner-api": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/payments-api": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/pricing": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/returns": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/search": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/shared-actions": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/status": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "globex/web-storefront": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "repo",
+   "reach": "github"
+  },
+  "gx-runner-a": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "host",
+   "reach": "ssh"
+  },
+  "gx-runner-b": {
+   "indexed_at": "2026-03-15T06:00:00Z",
+   "kind": "host",
+   "reach": "ssh"
+  }
+ },
+ "state": {
+  "custody": [],
+  "imports": {},
+  "last_scan": null,
+  "scans": [],
+  "yara_hits": []
+ },
+ "teams": [
+  {
+   "id": "@globex/data",
+   "jira": "DATA",
+   "lead": "wzhang",
+   "slack": "#data-eng"
+  },
+  {
+   "id": "@globex/infra",
+   "jira": "INF",
+   "lead": "pnovak",
+   "slack": "#infra"
+  },
+  {
+   "id": "@globex/mobile",
+   "jira": "MOB",
+   "lead": "apereira",
+   "slack": "#mobile-eng"
+  },
+  {
+   "id": "@globex/payments",
+   "jira": "PAY",
+   "lead": "erossi",
+   "slack": "#payments-eng"
+  },
+  {
+   "id": "@globex/security",
+   "jira": "SEC",
+   "lead": null,
+   "slack": "#security"
+  },
+  {
+   "id": "@globex/storefront",
+   "jira": "SF",
+   "lead": "jbrooks",
+   "slack": "#storefront-eng"
+  },
+  {
+   "id": "@globex/tools",
+   "jira": "TOOL",
+   "lead": "hsato",
+   "slack": "#internal-tools"
+  }
+ ]
+}
