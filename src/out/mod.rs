@@ -14,3 +14,5 @@ pub mod yara;
 
 #[cfg(test)]
 mod action_tests;
+#[cfg(test)]
+mod install_tests;

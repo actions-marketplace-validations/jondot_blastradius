@@ -137,15 +137,32 @@ To let an AI agent ask br during an incident, `br mcp` is a read-only MCP server
 
 ## Install
 
+With Node 18 or newer, nothing else to set up:
+
+```sh
+npx -y blastradius demo        # run it once
+npm i -g blastradius           # or put `br` on your PATH
+```
+
+Without Node:
+
 ```sh
 curl -fsSL https://raw.githubusercontent.com/jondot/blastradius/main/install.sh | sh
 ```
 
-This downloads the latest release for your OS and architecture, checks its sha256, and installs `br` to `~/.local/bin` (or `$BR_INSTALL_DIR`). Pin a version with `sh -s -- --version v0.1.0`.
+This downloads the latest release for your OS and architecture, checks its sha256, and installs `br` to `~/.local/bin` (or `$BR_INSTALL_DIR`). Pin a version with `sh -s -- --version v0.1.2`.
 
-Builds: Linux (x86_64 and arm64, static musl), macOS (x86_64 and arm64) and Windows (x86_64, `.zip` from the [releases page](https://github.com/jondot/blastradius/releases)). From source: `cargo install --path .`
+For an AI agent, add the skill. It teaches the agent when to reach for br, how to phrase a hunt, and how to read the answer:
 
-A Homebrew formula template and a Dockerfile are in [packaging/](packaging/README.md). They are not published yet.
+```sh
+npx skills add jondot/blastradius
+```
+
+Or give it br as an MCP server: `claude mcp add blastradius -- npx -y blastradius mcp` ([docs/mcp.md](docs/mcp.md)).
+
+In GitHub Actions, use `jondot/blastradius@v1` (see [action.yml](action.yml)).
+
+Builds: Linux (x86_64 and arm64, static musl), macOS (x86_64 and arm64) and Windows (x86_64). Archives are on the [releases page](https://github.com/jondot/blastradius/releases). From source: `cargo install --path .`
 
 ## Five commands
 

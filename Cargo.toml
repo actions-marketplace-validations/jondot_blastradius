@@ -1,6 +1,6 @@
 [package]
 name = "blastradius"
-version = "0.1.0"
+version = "0.1.2"
 edition = "2021"
 description = "Find everywhere a bad package, runtime, certificate or secret lives in your org: repos, CI, images and laptops, read-only"
 license = "MIT"
@@ -9,7 +9,6 @@ homepage = "https://github.com/jondot/blastradius"
 readme = "README.md"
 keywords = ["supply-chain", "security", "incident-response", "sbom", "cli"]
 categories = ["command-line-utilities", "development-tools"]
-# Ready for `cargo publish`, but the maintainer decides when: remove the next line (or set it to true) to publish.
 publish = false
 documentation = "https://github.com/jondot/blastradius/blob/main/docs/why.md"
 # What goes into the crate: the sources, the embedded demo org, and the docs that the unit tests read.

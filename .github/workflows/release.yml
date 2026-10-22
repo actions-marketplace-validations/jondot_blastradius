@@ -31,6 +31,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Tag matches Cargo.toml
+        shell: bash
+        run: |
+          crate=$(sed -n 's/^version = "\(.*\)"$/\1/p' Cargo.toml | head -1)
+          [ "v$crate" = "$GITHUB_REF_NAME" ] || { echo "tag $GITHUB_REF_NAME but Cargo.toml says $crate" >&2; exit 1; }
+
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.target }}
@@ -113,3 +119,29 @@ jobs:
         with:
           files: release/*
           fail_on_unmatched_files: true
+
+  npm:
+    name: npm
+    runs-on: ubuntu-24.04
+    needs: release
+    # set the repo variable NPM_PUBLISH=1 once the packages have npm trusted publishing for this workflow
+    if: vars.NPM_PUBLISH == '1'
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      - run: node npm/pack.mjs "$GITHUB_REF_NAME" dist out
+      # the platform packages first, so `blastradius` never points at a version that is not there yet
+      - run: |
+          for dir in out/blastradius-*/ out/blastradius/; do
+            npm publish "$dir" --provenance --access public
+          done
