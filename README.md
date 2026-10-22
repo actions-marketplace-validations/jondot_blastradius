@@ -140,8 +140,8 @@ To let an AI agent ask br during an incident, `br mcp` is a read-only MCP server
 With Node 18 or newer, nothing else to set up:
 
 ```sh
-npx -y blastradius demo        # run it once
-npm i -g blastradius           # or put `br` on your PATH
+npx -y @jondot/blastradius demo        # run it once
+npm i -g @jondot/blastradius           # or put `br` on your PATH
 ```
 
 Without Node:
@@ -158,7 +158,7 @@ For an AI agent, add the skill. It teaches the agent when to reach for br, how t
 npx skills add jondot/blastradius
 ```
 
-Or give it br as an MCP server: `claude mcp add blastradius -- npx -y blastradius mcp` ([docs/mcp.md](docs/mcp.md)).
+Or give it br as an MCP server: `claude mcp add blastradius -- npx -y @jondot/blastradius mcp` ([docs/mcp.md](docs/mcp.md)).
 
 In GitHub Actions, use `jondot/blastradius@v1` (see [action.yml](action.yml)).
 

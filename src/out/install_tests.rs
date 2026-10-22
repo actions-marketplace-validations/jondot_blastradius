@@ -77,3 +77,18 @@ fn the_skill_names_itself_and_says_when_to_use_it() {
     assert_eq!(y["name"].as_str(), Some("blastradius"));
     assert!(y["description"].as_str().is_some_and(|d| d.len() > 40), "the skill needs a real description");
 }
+
+#[test]
+fn the_docs_install_the_package_npm_publishes() {
+    let pack = read("npm/pack.mjs");
+    let name = pack.split("name: \"").nth(1).and_then(|s| s.split('"').next()).expect("pack.mjs names the main package");
+    for doc in ["README.md", "docs/mcp.md", "skills/blastradius/SKILL.md", "npm/README.md"] {
+        let text = read(doc);
+        for cmd in ["npx -y ", "npm i -g "] {
+            for rest in text.split(cmd).skip(1) {
+                let pkg = rest.split(|c: char| c.is_whitespace() || c == '`').next().unwrap_or("");
+                assert_eq!(pkg, name, "{doc}: `{cmd}{pkg}` but npm publishes {name}");
+            }
+        }
+    }
+}

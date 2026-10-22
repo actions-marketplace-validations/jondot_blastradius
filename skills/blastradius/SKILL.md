@@ -12,12 +12,12 @@ br answers "where did this bad thing land in our org, and who owns each place?" 
 Prefer the one that needs nothing set up:
 
 ```sh
-npx -y blastradius --version        # runs br through npm, nothing else to install
-npm i -g blastradius                # puts `br` on PATH
+npx -y @jondot/blastradius --version        # runs br through npm, nothing else to install
+npm i -g @jondot/blastradius                # puts `br` on PATH
 curl -fsSL https://raw.githubusercontent.com/jondot/blastradius/main/install.sh | sh   # no Node: binary to ~/.local/bin
 ```
 
-In the commands below, `br` can be replaced by `npx -y blastradius`.
+In the commands below, `br` can be replaced by `npx -y @jondot/blastradius`.
 
 ## Pick the mode
 
@@ -59,7 +59,7 @@ Names match whole: `lodash` never matches `lodash.merge`. Several indicators can
 ## As an MCP server
 
 ```sh
-claude mcp add blastradius -- npx -y blastradius mcp
+claude mcp add blastradius -- npx -y @jondot/blastradius mcp
 ```
 
 Tools: `hunt`, `status`, `advisory_show`, `hosts`, `evidence_summary`, `claimcheck`. They read an index built with `br init`; the server never builds one.

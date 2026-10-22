@@ -47,7 +47,7 @@ for (const [key, target] of Object.entries(platforms)) {
     join(dir, "package.json"),
     JSON.stringify({ name, ...common, description: `The br binary of blastradius for ${key}`, os: [os], cpu: [cpu], files: ["bin"], preferUnplugged: true }, null, 2) + "\n",
   );
-  writeFileSync(join(dir, "README.md"), `The \`br\` binary of [blastradius](https://github.com/jondot/blastradius) for ${key}. Install \`blastradius\` instead; it picks this package for you.\n`);
+  writeFileSync(join(dir, "README.md"), `The \`br\` binary of [blastradius](https://github.com/jondot/blastradius) for ${key}. Install \`@jondot/blastradius\` instead; it picks this package for you.\n`);
 }
 
 const main = join(out, "blastradius");
@@ -59,7 +59,7 @@ writeFileSync(
   join(main, "package.json"),
   JSON.stringify(
     {
-      name: "blastradius",
+      name: "@jondot/blastradius",
       ...common,
       description: "Find everywhere a bad package, runtime, certificate or secret lives in your org: repos, CI, images, laptops. Read-only.",
       keywords: ["security", "supply-chain", "incident-response", "sbom", "secrets", "mcp", "cli"],

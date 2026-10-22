@@ -12,7 +12,7 @@ Claude Code:
 
 Without installing br first, through npm:
 
-    claude mcp add blastradius -- npx -y blastradius mcp
+    claude mcp add blastradius -- npx -y @jondot/blastradius mcp
 
 Use one client's index by setting `BR_HOME` in the server's environment:
 
