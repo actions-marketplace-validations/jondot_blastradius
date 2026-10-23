@@ -1,0 +1,63 @@
+---
+import { url, absolute, GITHUB } from '../lib/site';
+
+interface Props {
+  title: string;
+  description: string;
+  /** What the HUD shows before the first scroll, e.g. "LV1 · THE FEED". */
+  level: string;
+  /** The nav key that is the current page. */
+  current?: 'docs' | 'playbooks' | '';
+}
+const { title, description, level, current = '' } = Astro.props;
+
+// The lamp from the logo, as the favicon.
+const lamp = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect width="16" height="16" fill="#08070f"/><rect x="3" y="3" width="10" height="10" fill="#ff4d6d"/></svg>`;
+const favicon = `data:image/svg+xml,${encodeURIComponent(lamp)}`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const image = absolute('/img/hero.webp');
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content={description}>
+<title>{title}</title>
+<link rel="canonical" href={canonical}>
+<link rel="icon" href={favicon}>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="blastradius">
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:url" content={canonical}>
+<meta property="og:image" content={image}>
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jersey+10&family=JetBrains+Mono:wght@400;700&family=VT323&display=swap">
+<link rel="stylesheet" href={url('/site.css')}>
+</head>
+<body>
+<canvas id="world" aria-hidden="true"></canvas>
+<header class="hud">
+  <div class="wrap">
+    <a class="logo" href={url('/')}><span class="lamp" aria-hidden="true"></span>BLASTRADIUS</a>
+    <span class="lvl" id="lvl" aria-hidden="true">{level}</span>
+    <span class="stats" aria-hidden="true"><span>CHECKED <b id="checked">0</b></span><span class="r">FOUND <b id="found">0</b></span><span class="src" id="src">LOADING</span></span>
+    <nav class="nav" aria-label="Site"><a href={url('/docs/')} aria-current={current === 'docs' ? 'page' : undefined}>Docs</a><a href={url('/docs/playbooks/')} aria-current={current === 'playbooks' ? 'page' : undefined}>Playbooks</a><a href={GITHUB}>GitHub</a><a class="key sm" href={url('/#install')}>Install</a></nav>
+  </div>
+</header>
+
+<slot />
+
+<footer><div class="wrap">
+  <span>blastradius (<code>br</code>) · open source, read-only</span>
+  <span><a href={url('/')}>Home</a> · <a href={url('/docs/')}>Docs</a> · <a href={GITHUB}>GitHub</a> · Advisory data from the GitHub Advisory Database</span>
+</div></footer>
+
+<script is:inline src={url('/pixel.js')}></script>
+<script is:inline src={url('/site.js')}></script>
+<script is:inline src={url('/world.js')}></script>
+<slot name="after" />
+</body>
+</html>

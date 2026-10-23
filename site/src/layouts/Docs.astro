@@ -1,0 +1,71 @@
+---
+import Game from './Game.astro';
+import Sidebar from '../components/Sidebar.astro';
+import { editUrl, type DocPage } from '../lib/docs';
+import './docs.css';
+
+interface Props {
+  title: string;
+  description: string;
+  /** The word on the page-head window's tag: Manual, Guide or Playbook. */
+  tag: string;
+  /** The HUD text, e.g. MANUAL. */
+  level: string;
+  h1: string;
+  ledeHtml: string;
+  crumbs: { label: string; href?: string }[];
+  current: string;
+  pages: DocPage[];
+  toc?: { id: string; text: string }[];
+  /** The file in the repo that this page comes from. */
+  source: string;
+  edit?: string;
+  navCurrent?: 'docs' | 'playbooks';
+}
+const { title, description, tag, level, h1, ledeHtml, crumbs, current, pages, toc = [], source, navCurrent = 'docs' } = Astro.props;
+const edit = Astro.props.edit ?? editUrl(source);
+const at = pages.findIndex(p => p.key === current);
+const prev = at > 0 ? pages[at - 1] : undefined;
+const next = at >= 0 && at < pages.length - 1 ? pages[at + 1] : undefined;
+---
+<Game title={title} description={description} level={level} current={navCurrent}>
+<section class="zone dochead" data-zone="sky" data-level={level}><div class="wrap"><div class="win">
+  <p class="tag">{tag}</p>
+  <p class="crumbs">{crumbs.map((c, i) => <>{i > 0 && ' / '}{c.href ? <a href={c.href}>{c.label}</a> : c.label}</>)}</p>
+  <h1>{h1}</h1>
+  <p class="lede" set:html={ledeHtml}></p>
+</div></div></section>
+
+<div class="wrap docs">
+  <Sidebar current={current} pages={pages} toc={toc} />
+  <article>
+    <slot />
+    <div class="endnav"><div class="win dim">
+      <p class="tag">Next</p>
+      <p class="note"><a href={edit}>Edit this page on GitHub</a></p>
+      <div class="next">
+        {prev && <a class="key alt" href={prev.href}>{prev.nav}<span>Previous page</span></a>}
+        {next && <a class="key alt" href={next.href}>{next.nav}<span>Next page</span></a>}
+      </div>
+    </div></div>
+  </article>
+</div>
+
+<script is:inline slot="after">
+// Sidebar: highlight the section in view; on small screens start with the contents closed.
+(() => {
+  const links = [...document.querySelectorAll('.side a[href^="#"]')];
+  const byId = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const seen = new Set();
+  const io = new IntersectionObserver(es => {
+    for (const e of es) e.isIntersecting ? seen.add(e.target.id) : seen.delete(e.target.id);
+    const first = [...byId.keys()].find(id => seen.has(id));
+    if (first) links.forEach(a => a.classList.toggle('on', a === byId.get(first)));
+  }, {rootMargin:'-80px 0px -60% 0px'});
+  document.querySelectorAll('article section').forEach(s => io.observe(s));
+  const toc = document.getElementById('toc');
+  if (matchMedia('(max-width:900px)').matches) toc.open = false;
+  toc.addEventListener('click', e => { if (e.target.matches('a') && matchMedia('(max-width:900px)').matches) toc.open = false; });
+})();
+</script>
+</Game>
