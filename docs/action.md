@@ -70,7 +70,7 @@ The Action's own text is `action.yml`; the scripts it runs are in `action/`. Inp
 
 ## `br hunt --format sarif`
 
-```
+```sh
 br hunt npm:evil-dep@1.2.3 --path . --format sarif > br.sarif
 ```
 
@@ -88,7 +88,7 @@ Files listed under SIMILAR, NOT IDENTICAL are lookalikes br never counts as find
 
 ## `br claimcheck --format sarif`
 
-```
+```sh
 br claimcheck --path . --org YOURORG --format sarif --fail-if exposed > claims.sarif
 ```
 
@@ -129,7 +129,7 @@ repos:
 
 List what you are tracking, one per line, in `.br-indicators` at the repo root:
 
-```
+```text
 # the worm from this morning
 npm:@tanstack/react-router@1.120.3
 npm:@tanstack/router-core@1.120.3
