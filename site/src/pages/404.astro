@@ -1,0 +1,22 @@
+---
+import Game from '../layouts/Game.astro';
+import { url } from '../lib/site';
+---
+<Game title="Lost underground · blastradius" description="This page is not on the site. The way back is the home page." level="LOST">
+<style is:global>
+.lost{min-height:calc(100vh - 58px);padding:56px 0 250px;display:flex;flex-direction:column;justify-content:center}
+.lost .win{max-width:640px}
+.lost h1{font-size:clamp(42px,5.4vw,70px);line-height:.95;margin:0;text-shadow:4px 4px 0 var(--ink)}
+.lost .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
+</style>
+<main>
+<section class="zone lost" data-zone="sky" data-level="LOST"><div class="wrap">
+  <div class="win">
+    <p class="tag">404</p>
+    <h1>Lost underground</h1>
+    <p>There is no page at this address. The sky, and the way back to the index, are up there.</p>
+    <div class="ctas"><a class="key" href={url('/')}>Back home</a><a class="key alt" href={url('/docs/')}>Read the docs</a></div>
+  </div>
+</div></section>
+</main>
+</Game>

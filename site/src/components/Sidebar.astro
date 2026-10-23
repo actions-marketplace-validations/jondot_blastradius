@@ -1,0 +1,36 @@
+---
+import { MANUAL_GROUPS, type DocPage } from '../lib/docs';
+import { url } from '../lib/site';
+
+interface Props { current: string; pages: DocPage[]; toc?: { id: string; text: string }[] }
+const { current, pages, toc = [] } = Astro.props;
+const guides = pages.filter(p => p.kind === 'guide' || p.kind === 'playbooks');
+const playbooks = pages.filter(p => p.kind === 'playbook');
+---
+<aside class="side win dim">
+  <details id="toc" open><summary>Contents</summary>
+  <nav aria-label="Docs">
+    {current === 'manual'
+      ? MANUAL_GROUPS.map(g => (
+        <div class="group"><p class="gl">{g.label}</p>
+          {g.links.map(([id, label]) => <a href={`#${id}`}>{label}</a>)}</div>
+      ))
+      : <div class="group"><p class="gl">Manual</p><a href={url('/docs/')}>Using br</a></div>}
+    <div class="group"><p class="gl">Guides</p>
+      {guides.map(p => (
+        <>
+          <a href={p.href} aria-current={p.key === current ? 'page' : undefined}>{p.nav}</a>
+          {p.key === current && toc.map(t => <a class="sub" href={`#${t.id}`}>{t.text}</a>)}
+        </>
+      ))}
+    </div>
+    <div class="group"><p class="gl">Playbooks</p>
+      {playbooks.map(p => (
+        <>
+          <a href={p.href} aria-current={p.key === current ? 'page' : undefined}>{p.nav}</a>
+          {p.key === current && toc.map(t => <a class="sub" href={`#${t.id}`}>{t.text}</a>)}
+        </>
+      ))}
+    </div>
+  </nav></details>
+</aside>

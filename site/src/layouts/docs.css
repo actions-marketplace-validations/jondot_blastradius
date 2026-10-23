@@ -1,0 +1,59 @@
+/* docs: the manual is read underground. The sidebar is a pause menu that stays put while the layers scroll past. */
+.dochead{min-height:62vh;padding:60px 0 200px;display:flex;align-items:center}
+.dochead .win{max-width:780px}
+.crumbs{font:400 21px var(--vt);color:var(--cool);letter-spacing:.06em;text-transform:uppercase;margin:0}.crumbs a{color:var(--cool)}
+.dochead h1{font-size:clamp(46px,6.2vw,74px);line-height:.95;margin:8px 0 0;text-shadow:4px 4px 0 var(--ink)}
+.dochead .lede{font-size:17px}
+.docs{display:grid;grid-template-columns:250px minmax(0,1fr);gap:40px;align-items:start}
+.side{position:sticky;top:96px;margin-top:70px;max-height:calc(100vh - 120px);overflow-y:auto;padding:18px 10px;font:400 20px var(--pixel);letter-spacing:.03em}
+.side .group{margin:0 0 18px}
+.side .gl{font:400 20px var(--vt);color:var(--coin);letter-spacing:.08em;text-transform:uppercase;margin:0 0 4px 10px}
+.side a{display:block;padding:5px 10px 5px 26px;color:var(--fg2);text-decoration:none;position:relative}
+.side a:hover{color:var(--fg);background:rgba(88,80,158,.25)}
+.side a.on{color:var(--coin)}.side a.on::before{content:'▶';position:absolute;left:8px;font-size:16px;top:8px}
+.side details summary{display:none}
+article{max-width:800px;min-width:0}
+article section.zone{padding:70px 0 0}
+article h2{font-size:42px;display:flex;align-items:baseline;gap:12px}
+article h2 a.anchor{opacity:0;font-size:29px;color:var(--dim);text-decoration:none}
+article h2:hover a.anchor,article h2 a.anchor:focus{opacity:1}
+article h3{font-size:27px;margin:28px 0 0;color:var(--cool)}
+article p,article li{color:var(--fg2)}
+article ul{padding-left:0;list-style:none}article li{margin:8px 0;padding-left:24px;position:relative}
+article li::before{content:'▶';position:absolute;left:0;top:1px;font-size:17px;color:var(--coin)}
+article li b{color:var(--fg);font-weight:700}
+.callout{display:flex;gap:14px;align-items:flex-start;margin:20px 3px;padding:12px 16px;background:rgba(46,42,92,.5);box-shadow:inset 4px 0 0 var(--cool)}
+.callout.warn{box-shadow:inset 4px 0 0 var(--coin)}
+.callout p{margin:0}.callout img.px{width:26px;height:24px;margin-top:2px}
+.next{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:14px;margin-top:22px}
+.next a.key{display:block;height:auto;padding:14px 16px;text-align:left;text-transform:none;letter-spacing:.02em;font-size:22px;line-height:1.3}
+.next span{display:block;font:400 19px var(--vt);color:var(--dim);margin-top:4px}
+@media (max-width:900px){
+  .docs{grid-template-columns:minmax(0,1fr);gap:0}
+  .side{position:static;max-height:none;overflow:visible;margin-top:0;padding:6px 10px}
+  .side details summary{display:block;cursor:pointer;padding:10px 6px;font:400 22px var(--pixel);list-style:none;text-transform:uppercase;letter-spacing:.08em}
+  .side details summary::after{content:' ▾';color:var(--dim)}
+  .side details[open] summary::after{content:' ▴'}
+}
+
+/* generated pages and the end of every page */
+.side a.sub{padding-left:42px;font-size:18px}
+.side a[aria-current=page]{color:var(--fg)}
+.side a.on{color:var(--coin)}
+article p,article li,article h3,article h4{overflow-wrap:anywhere}
+article h4{font:400 23px var(--pixel);margin:22px 0 0;color:var(--fg)}
+article ol{list-style:none;padding-left:0;counter-reset:step}
+article ol>li{counter-increment:step}
+article ol>li::before{content:counter(step) '.';font:400 20px var(--vt);top:0;color:var(--coin)}
+article li ul,article li ol{margin-top:4px}
+article blockquote{margin:16px 3px;padding:4px 16px;box-shadow:inset 4px 0 0 var(--cool);background:rgba(46,42,92,.5)}
+article hr{border:0;border-top:3px solid var(--m0);margin:24px 0}
+article img{max-width:100%;height:auto}
+article .tbl{margin:16px 0 0}
+.endnav{margin-top:70px;padding-bottom:20px}
+.endnav .win{padding-top:30px}
+.endnav .note{margin:0}
+@media (max-width:900px){.side a.sub{padding-left:34px}}
+
+/* A heading made of code must wrap on a phone rather than push the page sideways. */
+article h2 code,article h3 code{white-space:normal;overflow-wrap:anywhere}
