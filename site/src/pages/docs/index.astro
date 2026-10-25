@@ -1,0 +1,191 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import { allPages, MANUAL_DESCRIPTION } from '../../lib/docs';
+import { url, GITHUB } from '../../lib/site';
+
+const pages = await allPages();
+---
+<Docs
+  title="br docs"
+  description={MANUAL_DESCRIPTION}
+  tag="Manual"
+  level="MANUAL"
+  h1="Using br"
+  ledeHtml="<code>br</code> answers one question: where did this bad thing land in our org, who owns each place, and what do we do next. It works from a local index and only reads."
+  crumbs={[{ label: 'blastradius', href: url('/') }, { label: 'docs' }]}
+  current="manual"
+  pages={pages}
+  source="site/src/pages/docs/index.astro"
+  edit={GITHUB + '/edit/main/site/src/pages/docs/index.astro'}
+>
+    <section id="install" class="zone" data-zone="topsoil" data-level="MANUAL · GET STARTED"><div class="win dim"><p class="tag">Get started</p>
+      <h2>Install <a class="anchor" href="#install" aria-label="Link to Install">#</a></h2>
+      <p>With Node 18 or newer there is nothing else to set up:</p>
+      <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> npx -y @jondot/blastradius demo        <span class="m"># run it once</span>
+<span class="p">$</span> npm i -g @jondot/blastradius           <span class="m"># or put br on your PATH</span></pre></div>
+      <p>Without Node, the installer:</p>
+      <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> curl -fsSL https://raw.githubusercontent.com/jondot/blastradius/main/install.sh | sh</pre></div>
+      <p>This downloads the latest release for your OS and architecture, checks its sha256, and installs <code>br</code> to <code>~/.local/bin</code> (or <code>$BR_INSTALL_DIR</code>). Pin a version with <code>sh -s -- --version v0.1.2</code>.</p>
+      <p>For an AI agent, add the skill. It teaches the agent when to reach for <code>br</code>, how to phrase a hunt, and how to read the answer:</p>
+      <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> npx skills add jondot/blastradius</pre></div>
+      <p>Or give it <code>br</code> as an MCP server (see <a href={url('/docs/mcp/')}>MCP for agents</a>):</p>
+      <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> claude mcp add blastradius -- npx -y @jondot/blastradius mcp</pre></div>
+      <p>In GitHub Actions, use <code>jondot/blastradius@v1</code> (see <a href={url('/docs/action/')}>CI and the Action</a>).</p>
+      <p>Builds: Linux (x86_64 and arm64, static musl), macOS (x86_64 and arm64) and Windows (x86_64). Archives are on the <a href={GITHUB + '/releases'}>releases page</a>. From source: <code>cargo install --path .</code></p>
+    </div></section>
+
+    <section id="try" class="zone" data-zone="topsoil" data-level="MANUAL · GET STARTED"><div class="win dim"><p class="tag">Get started</p>
+      <h2>Try it with no token <a class="anchor" href="#try" aria-label="Link to Try it">#</a></h2>
+      <p><code>br demo</code> uses a sample org built into the binary. No token, no network, nothing of yours is read. It prints a six-step tour of a made-up incident. The first step:</p>
+      <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> br demo hunt --advisory GHSA-q7vr-4xhc-m2jw --format summary
+<span class="out">Yes. 7 repos, 2 images, 2 machines, 2 caches and 2 build artifacts contain or contained the affected packages (GHSA-q7vr-4xhc-m2jw).
+4 people and 2 machines may also be affected but could not be confirmed.
+Still present: 5 repos, 2 images, 2 machines, 2 caches and 2 build artifacts.
+...
+Data as of 05-08 10:00Z–05-12 06:30Z (oldest: laptop-priya). Not checked: 4 sources (acme/mobile-web; ci-runner-04; laptop-priya; laptops: 11 of 12 members visible to this token in GitHub have no laptop scan here). The number can still change.</span></pre></div>
+    </div></section>
+
+    <section id="index" class="zone" data-zone="topsoil" data-level="MANUAL · GET STARTED"><div class="win dim"><p class="tag">Get started</p>
+      <h2>Build the index <a class="anchor" href="#index" aria-label="Link to Build the index">#</a></h2>
+      <p>Build it once. A read-only GitHub token is enough.</p>
+      <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> export GITHUB_TOKEN=...
+<span class="p">$</span> br init --org acme</pre></div>
+      <p>The index lives in <code>~/.blastradius</code> (override with <code>BR_HOME</code>). Keep one per client with <code>br --home ~/clients/acme init --org acme</code> (the same as <code>BR_HOME=~/clients/acme</code>). Re-scans use conditional requests, so an unchanged repo costs about 3 API calls.</p>
+    </div></section>
+
+    <section id="hunt" class="zone" data-zone="topsoil" data-level="MANUAL · GET STARTED"><div class="win dim"><p class="tag">Get started</p>
+      <h2>Your first hunt <a class="anchor" href="#hunt" aria-label="Link to Your first hunt">#</a></h2>
+      <p>Ask from an advisory id, an indicator, or pasted advisory text.</p>
+      <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> br hunt --advisory GHSA-xxxx-xxxx-xxxx
+<span class="p">$</span> br hunt --advisory GHSA-xxxx-xxxx-xxxx --owner frontend   <span class="m"># one team's places</span>
+<span class="p">$</span> br hunt --advisory GHSA-xxxx-xxxx-xxxx --repo acme/web    <span class="m"># is my repo ok?</span></pre></div>
+      <p>The answer lists every repo, CI run, cache, artifact, image and machine that holds the bad version, now or at any time in the exposure window. It names the secrets the CI runs could read and the team that owns each place. It says where the thing was installed, not that the bad code ran.</p>
+      <div class="framed callout"><img class="px" data-px="net" alt=""><p>A hunt reads only the index. It touches the network or a machine only when you pass <code>--now</code>, <code>--live</code> or <code>--path</code>.</p></div>
+    </div></section>
+
+    <section id="indicators" class="zone" data-zone="clay" data-level="MANUAL · USE"><div class="win dim"><p class="tag">Use</p>
+      <h2>Indicators <a class="anchor" href="#indicators" aria-label="Link to Indicators">#</a></h2>
+      <p>An indicator says what to look for. Names are matched whole: <code>lodash</code> never matches <code>lodash.merge</code>. Advisories are matched by their real version ranges, per package.</p>
+      <div class="tbl"><table>
+        <thead><tr><th scope="col">Form</th><th scope="col">Finds</th></tr></thead>
+        <tbody>
+          <tr><td><code>npm:@scope/name@1.2.3</code></td><td>A package version. Also <code>pypi:</code>, <code>cargo:</code>, <code>go:</code></td></tr>
+          <tr><td><code>action:owner/repo@ref</code></td><td>A GitHub Action at a ref</td></tr>
+          <tr><td><code>sha256:HASH</code></td><td>A file by hash, including inside image layers</td></tr>
+          <tr><td><code>runtime:NAME@fixed:V1,V2</code></td><td>A language runtime below the fixed release of its line</td></tr>
+          <tr><td><code>cert:HEX</code>, <code>cert:subject:TEXT</code></td><td>A CA certificate in a trust store, by fingerprint or subject</td></tr>
+          <tr><td><code>secret:NAME</code></td><td>A secret by name, with <code>*</code> globs and <code>--since DATE</code></td></tr>
+        </tbody></table></div>
+    </div></section>
+
+    <section id="incidents" class="zone" data-zone="clay" data-level="MANUAL · USE"><div class="win dim"><p class="tag">Use</p>
+      <h2>Runtimes, certificates and secrets <a class="anchor" href="#incidents" aria-label="Link to Runtimes, certificates and secrets">#</a></h2>
+      <h3>Runtimes</h3>
+      <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> br hunt runtime:php@fixed:8.5.12,8.4.27,8.3.36,8.2.35
+<span class="p">$</span> br hunt runtime:node@fixed:22.23.4,24.22.1,26.12.1</pre></div>
+      <p><code>fixed:</code> lists the first fixed release of each line. A version on one of those lines but below the fix is found, and so is a line with no fix at all. <code>br</code> reads version files, Dockerfile <code>FROM</code> tags and <code>ENV</code> versions, <code>setup-php</code> and <code>setup-node</code> steps, the runtimes installed in images, and the runtimes on runners and laptops. A floating tag such as <code>node:lts</code> is reported apart, as possible.</p>
+      <h3>Certificates</h3>
+      <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> br hunt "cert:subject:emSign ECC Root CA - G3"
+<span class="p">$</span> br hunt cert:SHA256-FINGERPRINT</pre></div>
+      <p>It reads the certificates themselves out of OS bundles in every image layer, certifi copies, Java cacerts, PEM bundles in repos, and the trust stores on scanned machines.</p>
+      <h3>Secrets</h3>
+      <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> br hunt 'secret:RAILWAY_*' --since DATE</pre></div>
+      <p>Every matching org, repo or environment secret, with when it was last updated. Anything not updated since <code>--since</code> is NOT ROTATED. It also lists the workflows that read it, the images that name it in their environment, and the config files that mention it.</p>
+      <div class="framed callout warn"><img class="px" data-px="keys" alt=""><p>It works from names and dates only. <code>br</code> never reads a secret value.</p></div>
+    </div></section>
+
+    <section id="after" class="zone" data-zone="clay" data-level="MANUAL · USE"><div class="win dim"><p class="tag">Use</p>
+      <h2>After the hunt <a class="anchor" href="#after" aria-label="Link to After the hunt">#</a></h2>
+      <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> br fix --advisory GHSA-xxxx-xxxx-xxxx          <span class="m"># per repo: how to reach a fixed version</span>
+<span class="p">$</span> br notify --advisory GHSA-xxxx-xxxx-xxxx       <span class="m"># one draft per owning team</span>
+<span class="p">$</span> br purge --advisory GHSA-xxxx-xxxx-xxxx        <span class="m"># caches, artifacts, images and paths to delete</span>
+<span class="p">$</span> br hunt --advisory GHSA-xxxx-xxxx-xxxx --progress   <span class="m"># the day after: still open, fixed, new</span></pre></div>
+      <p>Someone sent you a sample? <code>br hunt --similar suspect.js</code> finds files that look like it, and <code>br hunt sha256:HASH --similar-related</code> also finds the files shipped with it in the same install.</p>
+    </div></section>
+
+    <section id="laptops" class="zone" data-zone="stone" data-level="MANUAL · USE"><div class="win dim"><p class="tag">Use</p>
+      <h2>Laptops and hosts <a class="anchor" href="#laptops" aria-label="Link to Laptops and hosts">#</a></h2>
+      <p>Laptops with no network path to the index scan themselves and send the result.</p>
+      <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> br scan --local --export laptop.brx --seal     <span class="m"># on the laptop</span>
+<span class="p">$</span> br import laptop.brx                           <span class="m"># on your machine</span>
+<span class="p">$</span> br hosts                                        <span class="m"># who is still missing</span></pre></div>
+      <p>A second file for a machine already in the index is merged by path, and the newer scan wins. <code>--replace</code> swaps the whole machine. Tell <code>br</code> what it can't know from outside with <code>br hosts add NAME --kind runner|laptop|server</code>.</p>
+    </div></section>
+
+    <section id="ci" class="zone" data-zone="stone" data-level="MANUAL · USE"><div class="win dim"><p class="tag">Use</p>
+      <h2>CI and agents <a class="anchor" href="#ci" aria-label="Link to CI and agents">#</a></h2>
+      <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> br hunt npm:name@1.2.3 --path . --fail-if found --strict       <span class="m"># no index, no network; exit 10 when found</span>
+<span class="p">$</span> br hunt --advisory GHSA-xxxx-xxxx-xxxx --format sarif          <span class="m"># SARIF 2.1.0 for code scanning</span>
+<span class="p">$</span> br claimcheck --path . --org acme --fail-if exposed      <span class="m"># asks the public registries about your names; exit 10 when exposed, 3 if it checked nothing</span></pre></div>
+      <p>The GitHub Action (<code>jondot/blastradius@v1</code>), the SARIF output and the pre-commit hook are in <a href={url('/docs/action/')}>CI and the Action</a>. <code>br mcp</code> is a read-only MCP server over stdio so an AI agent can ask <code>br</code> during an incident: <a href={url('/docs/mcp/')}>MCP for agents</a>.</p>
+    </div></section>
+
+    <section id="commands" class="zone" data-zone="stone" data-level="MANUAL · USE"><div class="win dim"><p class="tag">Use</p>
+      <h2>All commands <a class="anchor" href="#commands" aria-label="Link to All commands">#</a></h2>
+      <div class="tbl"><table>
+        <thead><tr><th scope="col">Command</th><th scope="col">What it does</th></tr></thead>
+        <tbody>
+          <tr><td><code>init</code></td><td>Build the index from a GitHub org, a directory, or hosts</td></tr>
+          <tr><td><code>hunt</code></td><td>Find where an advisory or indicator lives, with owners</td></tr>
+          <tr><td><code>fix</code></td><td>Per repo, how to reach a fixed version</td></tr>
+          <tr><td><code>notify</code></td><td>One draft message per owning team</td></tr>
+          <tr><td><code>evidence</code></td><td>A sealed record, optionally signed, optionally with a customer-safe statement</td></tr>
+          <tr><td><code>verify</code></td><td>Check an evidence file's manifest and signature</td></tr>
+          <tr><td><code>purge</code></td><td>The caches, artifacts, images and paths to delete</td></tr>
+          <tr><td><code>claimcheck</code></td><td>Which internal package names a stranger could already own on npm, PyPI, crates.io or the Go proxy</td></tr>
+          <tr><td><code>mcp</code></td><td>A read-only MCP server for an AI agent</td></tr>
+          <tr><td><code>status</code></td><td>How fresh each source is, and what the answer did not cover</td></tr>
+          <tr><td><code>demo</code></td><td>The same commands on a built-in sample org</td></tr>
+          <tr><td><code>scan</code>, <code>import</code>, <code>hosts</code></td><td>Re-read sources, bring in laptop files, list machines</td></tr>
+          <tr><td><code>diff</code>, <code>teams</code>, <code>advisory</code>, <code>sql</code></td><td>Compare, inspect owners, manage advisories, query the index</td></tr>
+        </tbody></table></div>
+      <p>Run <code>br --help</code> or <code>br COMMAND --help</code> for every flag.</p>
+    </div></section>
+
+    <section id="exit" class="zone" data-zone="deep" data-level="MANUAL · TRUST"><div class="win dim"><p class="tag">Trust</p>
+      <h2>Answers and exit codes <a class="anchor" href="#exit" aria-label="Link to Answers and exit codes">#</a></h2>
+      <p>Every answer says how old the index is, how old its oldest source is, and which sources it could not check: a 403, an expired log, an unreadable lockfile. A clear answer with gaps is reported as such, never as plain clear. <code>--max-age DUR</code> refuses to answer (exit 5) if a source is older.</p>
+      <div class="tbl"><table>
+        <thead><tr><th scope="col">Code</th><th scope="col">Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><code>0</code></td><td>Clear</td></tr>
+          <tr><td><code>10</code></td><td>Found</td></tr>
+          <tr><td><code>3</code></td><td>Clear with gaps, under <code>--strict</code></td></tr>
+          <tr><td><code>5</code></td><td>No index, or a stale one</td></tr>
+          <tr><td><code>11</code></td><td>Nothing found, under <code>--fail-if none</code></td></tr>
+          <tr><td><code>4</code>, <code>2</code>, <code>1</code></td><td>Auth problem, usage error, failure</td></tr>
+        </tbody></table></div>
+    </div></section>
+
+    <section id="reads" class="zone" data-zone="deep" data-level="MANUAL · TRUST"><div class="win dim"><p class="tag">Trust</p>
+      <h2>What it reads <a class="anchor" href="#reads" aria-label="Link to What it reads">#</a></h2>
+      <p><code>br</code> never writes to anything it reads. Every GitHub call is a GET or HEAD, and the only POSTs are the registry token exchanges. <a href={url('/docs/why/')}>Why br</a> lists what it sends, and where.</p>
+      <ul>
+        <li><b>GitHub org:</b> repos, lockfiles and manifests with their commit history (npm, yarn, pnpm, PyPI, Cargo, Go), CODEOWNERS, workflow files, Actions runs, caches and artifacts, releases and their assets, teams and members, registered runners, and org container images on GHCR.</li>
+        <li><b>Container registries:</b> images, layers and their files by hash, including files a later layer deleted. Uses your existing <code>docker login</code>.</li>
+        <li><b>Machines:</b> a directory on this machine, ssh-reachable hosts and runners, and <code>.brx</code> files exported by laptops.</li>
+        <li><b>Advisories:</b> OSV, for GHSA and MAL ids; advisory ids in pasted text are fetched too.</li>
+        <li><b>Public registries, only for claimcheck:</b> read-only GETs to npmjs.org, pypi.org, crates.io and proxy.golang.org about your own package names. A hunt never does this.</li>
+      </ul>
+    </div></section>
+
+    <section id="evidence" class="zone" data-zone="deep" data-level="MANUAL · TRUST"><div class="win dim"><p class="tag">Trust</p>
+      <h2>Evidence <a class="anchor" href="#evidence" aria-label="Link to Evidence">#</a></h2>
+      <p>Evidence is sealed with a sha256 manifest, which proves integrity, and with <code>--sign</code> it is signed with <code>ssh-keygen -Y sign</code>, which proves identity.</p>
+      <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> br evidence --advisory GHSA-xxxx-xxxx-xxxx --out evidence.json --sign ~/.ssh/id_ed25519
+<span class="p">$</span> br evidence --advisory GHSA-xxxx-xxxx-xxxx --out evidence.json --audience customers
+<span class="p">$</span> br verify evidence.json --allowed-signers allowed_signers</pre></div>
+      <p><code>--audience customers</code> adds a plain statement with no internal names.</p>
+    </div></section>
+
+    <section id="playbooks" class="zone" data-zone="core" data-level="MANUAL · MORE"><div class="win dim"><p class="tag">More</p>
+      <h2>Playbooks by role <a class="anchor" href="#playbooks" aria-label="Link to Playbooks">#</a></h2>
+      <p>One page each, with commands to copy and real output from <code>br demo</code>.</p>
+      <div class="next">
+        <a class="key alt" href={url('/docs/playbooks/appsec-oncall/')}>AppSec on-call<span>The first hour of an incident</span></a>
+        <a class="key alt" href={url('/docs/playbooks/platform-eng/')}>Platform engineer<span>Images, runners and caches</span></a>
+        <a class="key alt" href={url('/docs/playbooks/ciso/')}>CISO<span>What to report, and when</span></a>
+        <a class="key alt" href={url('/docs/playbooks/')}>All playbooks<span>SOC, team lead, CTO, auditor, IR, claimcheck</span></a>
+      </div>
+    </div></section>
+</Docs>

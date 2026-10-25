@@ -227,7 +227,7 @@ Every answer says how old the index is, how old its oldest source is, and which 
 - **Advisories:** OSV, for GHSA and `MAL-` ids; advisory ids in pasted text (`--text`) are fetched too.
 - **Public registries, only for `br claimcheck`:** read-only GETs to npmjs.org, pypi.org, crates.io and proxy.golang.org (or the endpoints in `BR_NPM_REGISTRY`, `BR_PYPI_API`, `BR_CRATES_API`, `BR_GOPROXY`), asking about your own package names. A hunt never does this.
 
-The index lives at `~/.local/share/br/index.db` (override with `BR_HOME`). A hunt reads only the index; it touches the network or a machine only when you pass `--now`, `--live` or `--path`. Re-scans use conditional requests, so an unchanged repo costs about 3 API calls.
+The index lives at `~/.blastradius/index.db` (override with `BR_HOME`). A hunt reads only the index; it touches the network or a machine only when you pass `--now`, `--live` or `--path`. Re-scans use conditional requests, so an unchanged repo costs about 3 API calls.
 
 Evidence is sealed with a sha256 manifest (integrity) and, with `--sign`, signed with `ssh-keygen -Y sign` (identity). `br verify FILE --allowed-signers FILE` checks both.
 

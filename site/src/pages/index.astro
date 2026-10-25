@@ -1,0 +1,205 @@
+---
+import Game from '../layouts/Game.astro';
+import { url, GITHUB } from '../lib/site';
+---
+<Game title="blastradius" description="When something you depend on goes bad, br tells you everywhere it is: repos, CI runs, caches, images and laptops, with the owner of each. Read-only." level="LV1 · THE FEED">
+<style is:global>
+/* the first screen is the sky; the ground with your org's machines sits at its bottom edge */
+.hero{min-height:calc(100vh - 58px);padding:56px 0 250px;display:flex;flex-direction:column;justify-content:center}
+.hero .kicker{font:400 24px var(--vt);color:var(--cool);letter-spacing:.08em;margin:0;text-transform:uppercase}
+.hero h1{font-size:clamp(42px,5.4vw,70px);line-height:.95;margin:12px 0 0;max-width:20ch;text-shadow:4px 4px 0 var(--ink)}
+.hero h1 em{font-style:normal;color:var(--coin)}
+.hero .row{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:30px;margin-top:40px;align-items:end}
+.hero .lede{margin:0;font-size:17px;color:var(--fg)}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+.trydemo{font-size:15px}
+.hint p{margin:0;font-size:15px}
+.hint .src{display:block;margin-top:10px;font:400 21px var(--vt)}
+
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:30px;align-items:center}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:40px 30px;margin-top:44px}
+.card{display:flex;flex-direction:column}
+.card .monitor{margin-bottom:18px}
+.card h3{margin-top:12px}
+.card p{font-size:15px}
+.card.critical{--frame:#ff8aa0}.card.high{--frame:#ffbe85}
+.places{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:34px 26px;margin-top:44px}
+.place{display:flex;gap:12px;align-items:flex-start;padding:16px}
+.place b{display:block;font:400 23px var(--pixel);letter-spacing:.03em}
+.place span{display:block;color:var(--dim);font-size:14px;line-height:1.5;margin-top:2px}
+.latest td.id a,.latest td.id span{font:400 19px var(--vt);white-space:nowrap}
+.latest td.c code{white-space:nowrap;font-size:22px}
+.latest .sev{margin-bottom:6px}
+.fits td:first-child{white-space:nowrap}
+.fits tr.us td{background:rgba(255,204,51,.1);color:var(--fg)}
+.fits tr.us td:first-child{box-shadow:inset 4px 0 0 var(--coin)}
+.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px 30px;margin-top:44px;align-items:start}
+.trust .tbl{margin:0}.trust .tbl table{min-width:0}
+.trust .tbl td:first-child{font:400 24px var(--vt);color:var(--coin);width:70px}
+.install{--frame:var(--coin)}
+.install p{font-size:15px}
+@media (max-width:860px){.hero .row,.split{grid-template-columns:minmax(0,1fr)}.hero{padding-top:36px}}
+</style>
+
+<main>
+<section class="zone hero" data-zone="sky" data-level="LV1 · THE FEED"><div class="wrap">
+  <p class="kicker">Open source CLI · read-only</p>
+  <h1>When something you depend on goes bad, <em>br tells you everywhere it is.</em></h1>
+  <div class="row">
+    <div class="win">
+      <p class="tag">br</p>
+      <p class="lede">Repos, CI runs and the secrets they held, caches, container images (deleted layers included) and laptops. Then who owns each place and how to clean up. It runs on your machine and only reads.</p>
+      <div class="code"><div class="bar"><span>try it · node 18+</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> npx -y @jondot/blastradius demo</pre></div>
+      <div class="ctas"><a class="key" href={url('/docs/')}>Read the docs</a><a class="key alt" href={GITHUB}>GitHub</a></div>
+      <p class="trydemo">No token yet? <code>br demo</code> runs a made-up incident on a sample org built into the binary.</p>
+    </div>
+    <div class="win dim hint">
+      <p class="tag">What you see</p>
+      <p>Each falling bug is a real advisory. <code>br</code> checks it on the way down, or shows where it landed in your org. Click the sky to check one yourself, then scroll down through the layers <code>br</code> reads.</p>
+      <span class="src" id="srcnote">Loading advisories from GitHub…</span>
+    </div>
+  </div>
+</div></section>
+
+<section class="zone" id="hunt" data-zone="topsoil" data-level="LV2 · YOUR ORG"><div class="wrap">
+  <div class="win split">
+    <p class="tag">One command</p>
+    <div>
+      <h2>Where it is, who owns it, what's next.</h2>
+      <ul class="points">
+        <li><b>Every place, now or in the window.</b> Repos, CI runs, caches, artifacts, images and machines that hold the bad version, or held it.</li>
+        <li><b>The owner of each.</b> From CODEOWNERS and teams, so the right people get one message each.</li>
+        <li><b>What it could not check.</b> A clean answer with gaps is "clear with gaps", never plain clear.</li>
+      </ul>
+    </div>
+    <img class="monitor" src={url('/img/hero.webp')} width="1400" height="1119" alt="Terminal output of br hunt on a sample org: 7 repos, 8 CI runs, 2 images and 9 secrets to rotate, a list of places with owners, the sources not checked, and the next commands to run.">
+  </div>
+</div></section>
+
+<section class="zone" id="incidents" data-zone="clay" data-level="LV3 · OCTOBER 2026"><div class="wrap">
+  <div class="win dim">
+    <p class="tag">Not just packages</p>
+    <h2>The week of October 2026, four commands.</h2>
+    <p>Four incidents landed in a few days, and none was a bad package version. Each one is a single <code>br hunt</code>. Screenshots are real runs against a sample org, with made-up names and certificates.</p>
+  </div>
+  <div class="cards">
+    <article class="win card critical"><img class="monitor" src={url('/img/php.webp')} width="1400" height="883" loading="lazy" alt="br output listing PHP runtimes below the fixed release of their branch, with owners.">
+      <span><span class="sev critical">Critical</span></span><h3>PHP2Shell</h3><p>Remote code execution in PHP itself. Every PHP below the fixed release of its line, in version files, Dockerfiles, workflows, images and machines.</p>
+      <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> br hunt runtime:php@fixed:8.5.12,8.4.27,8.3.36,8.2.35</pre></div></article>
+    <article class="win card high"><img class="monitor" src={url('/img/node.webp')} width="1400" height="883" loading="lazy" alt="br output listing Node.js runtimes in images and CI that are below the October release.">
+      <span><span class="sev high">High</span></span><h3>Node.js October release</h3><p>Images, runners and laptops on a Node line below the fix, and end-of-life lines that got none.</p>
+      <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> br hunt runtime:node@fixed:22.23.4,24.22.1,26.12.1</pre></div></article>
+    <article class="win card high"><img class="monitor" src={url('/img/cert.webp')} width="1400" height="940" loading="lazy" alt="br output listing the trust stores that still hold the distrusted emSign root certificate.">
+      <span><span class="sev high">High</span></span><h3>A distrusted root CA</h3><p>OS bundles in image layers, certifi, Java cacerts and PEM files in repos that still trust it.</p>
+      <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> br hunt "cert:subject:emSign ECC Root CA - G3"</pre></div></article>
+    <article class="win card critical"><img class="monitor" src={url('/img/secrets.webp')} width="1400" height="931" loading="lazy" alt="br output listing secrets matching a name, each marked rotated or not rotated since the breach.">
+      <span><span class="sev critical">Critical</span></span><h3>A platform breach</h3><p>Where each matching secret is stored, what read it, and whether it was rotated since. From names and dates only; br never reads a secret value.</p>
+      <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> br hunt 'secret:RAILWAY_*' --since DATE</pre></div></article>
+  </div>
+</div></section>
+
+<section class="zone" id="places" data-zone="stone" data-level="LV4 · THE INDEX"><div class="wrap">
+  <div class="win dim">
+    <p class="tag">Where it looks</p>
+    <h2>One local index of your org.</h2>
+    <p>Built once from your GitHub org, your container registries and the machines you point it at. Laptops that can't be reached scan themselves and send a sealed file.</p>
+  </div>
+  <div class="places">
+    <div class="win dim place"><img class="px" data-px="repo" alt=""><div><b>Repos</b><span>Lockfiles and manifests with their history, and CODEOWNERS</span></div></div>
+    <div class="win dim place"><img class="px" data-px="ci" alt=""><div><b>CI</b><span>Workflows, Actions runs and the secrets they could read, runners</span></div></div>
+    <div class="win dim place"><img class="px" data-px="images" alt=""><div><b>Images</b><span>Layers and files by hash, including files a later layer deleted</span></div></div>
+    <div class="win dim place"><img class="px" data-px="laptop" alt=""><div><b>Laptops</b><span>Local scans, sealed and imported</span></div></div>
+    <div class="win dim place"><img class="px" data-px="cache" alt=""><div><b>Caches and artifacts</b><span>Actions caches, build artifacts and release assets</span></div></div>
+    <div class="win dim place"><img class="px" data-px="keys" alt=""><div><b>Secrets</b><span>Where stored, who read them, rotated or not</span></div></div>
+    <div class="win dim place"><img class="px" data-px="certs" alt=""><div><b>Trust stores</b><span>CA certificates in images, environments and hosts</span></div></div>
+  </div>
+</div></section>
+
+<section class="zone" id="latest" data-zone="stone" data-level="LV5 · INCOMING"><div class="wrap">
+  <div class="win">
+    <p class="tag">Published today</p>
+    <h2>Check against the newest advisories.</h2>
+    <p>The same bugs that fall at the top of this page: the most severe of the latest reviewed advisories on GitHub. Each row is one command against your index.</p>
+    <div class="tbl latest"><table>
+      <thead><tr><th scope="col">Advisory</th><th scope="col">Package</th><th scope="col">Summary</th><th scope="col">Command</th></tr></thead>
+      <tbody id="latestbody"><tr><td colspan="4">Loading…</td></tr></tbody>
+    </table></div>
+    <p class="note" id="latestnote"></p>
+  </div>
+</div></section>
+
+<section class="zone" id="fits" data-zone="deep" data-level="LV6 · WHERE BR FITS"><div class="wrap">
+  <div class="win dim">
+    <p class="tag">Where br fits</p>
+    <h2>It complements your scanners.</h2>
+    <div class="tbl fits"><table>
+      <thead><tr><th scope="col">Tool</th><th scope="col">Question it answers</th><th scope="col">Output</th></tr></thead>
+      <tbody>
+        <tr><td>Dependabot, osv-scanner, trivy</td><td>Is a known-vulnerable package in this code or image now?</td><td>Alerts, PRs, scan reports</td></tr>
+        <tr><td>Socket</td><td>Does this package behave badly, before I install it?</td><td>A verdict on a package</td></tr>
+        <tr><td>GitHub secret scanning</td><td>Has a secret been committed?</td><td>Alerts</td></tr>
+        <tr class="us"><td><b>br</b></td><td>A thing is known to be bad. Where did it go, what could it reach, is it really gone?</td><td>Places, CI runs and secret names, owners, a sealed record</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+</div></section>
+
+<section class="zone" id="trust" data-zone="bedrock" data-level="LV7 · TRUST"><div class="wrap">
+  <div class="win dim">
+    <p class="tag">Trust</p>
+    <h2>It only reads, and says what it missed.</h2>
+  </div>
+  <div class="trust">
+    <div class="win dim"><ul class="points" style="margin:0">
+      <li>Every GitHub call is a GET or a HEAD. A read-only token is enough.</li>
+      <li>A hunt reads only the local index, unless you pass <code>--now</code>, <code>--live</code> or <code>--path</code>.</li>
+      <li>Every answer says how old the index is and which sources it could not check.</li>
+      <li>Evidence is sealed with a sha256 manifest and can be signed with your SSH key.</li>
+    </ul></div>
+    <div class="win dim"><p class="tag">Exit codes</p><div class="tbl"><table aria-label="Exit codes">
+      <tbody>
+        <tr><td>0</td><td>Clear</td></tr>
+        <tr><td>10</td><td>Found</td></tr>
+        <tr><td>3</td><td>Clear with gaps, under <code>--strict</code></td></tr>
+        <tr><td>5</td><td>No index, or a stale one</td></tr>
+        <tr><td>11</td><td>Nothing found, under <code>--fail-if none</code></td></tr>
+        <tr><td>4 2 1</td><td>Auth problem, usage error, failure</td></tr>
+      </tbody></table></div></div>
+  </div>
+</div></section>
+
+<section class="zone" id="install" data-zone="core" data-level="LV8 · START"><div class="wrap">
+  <div class="win install">
+    <p class="tag">Install</p>
+    <h2>One line, then one question.</h2>
+    <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> npm i -g @jondot/blastradius               <span class="m"># Node 18+; or the installer below</span>
+<span class="p">$</span> br demo                                    <span class="m"># try it on a sample org, no token</span>
+<span class="p">$</span> br init --org YOUR_ORG                     <span class="m"># once, with a read-only token</span>
+<span class="p">$</span> br hunt --advisory GHSA-xxxx-xxxx-xxxx</pre></div>
+    <p>Without Node, the installer checks the sha256 and puts <code>br</code> in <code>~/.local/bin</code>:</p>
+    <div class="code"><div class="bar"><span>shell</span><button class="copy" type="button">Copy</button></div><pre><span class="p">$</span> curl -fsSL https://raw.githubusercontent.com/jondot/blastradius/main/install.sh | sh</pre></div>
+    <p>Linux, macOS and Windows builds are on the <a href={GITHUB + '/releases'}>releases page</a>.</p>
+    <div class="ctas"><a class="key" href={url('/docs/')}>Read the docs</a><a class="key alt" href={url('/docs/playbooks/')}>Playbooks by role</a></div>
+  </div>
+</div></section>
+</main>
+
+<script is:inline slot="after">
+// "Check against the newest advisories": filled from the same feed the world uses.
+(() => {
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;'}[c]));
+  const rank = {critical:0, high:1, medium:2, low:3};
+  function render({list, live, why}) {
+    const top = [...list].sort((a, b) => rank[a.sev] - rank[b.sev] || String(b.date || '').localeCompare(String(a.date || ''))).slice(0, 8);
+    document.getElementById('latestbody').innerHTML = top.map(a => `<tr>
+      <td class="id"><span class="sev ${a.sev}">${a.sev}</span><br>${a.url ? `<a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.id)}</a>` : `<span>${esc(a.id)}</span>`}</td>
+      <td>${esc(a.pkg)}</td><td>${esc(a.sum)}</td><td class="c"><code>${esc(a.cmd)}</code></td></tr>`).join('');
+    document.getElementById('latestnote').textContent = live
+      ? 'Live from the GitHub Advisory Database, refreshed every ten minutes.'
+      : `These are sample rows: the live feed is ${why}. On the published site this table fills from GitHub.`;
+  }
+  if (window.brData) render(window.brData);
+  window.brFeed.addEventListener('data', e => render(e.detail));
+})();
+</script>
+</Game>

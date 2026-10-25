@@ -8,19 +8,27 @@ It targets MCP revision **2025-06-18**. It also answers a client that asks for 2
 
 Claude Code:
 
-    claude mcp add blastradius -- br mcp
+```sh
+claude mcp add blastradius -- br mcp
+```
 
 Without installing br first, through npm:
 
-    claude mcp add blastradius -- npx -y @jondot/blastradius mcp
+```sh
+claude mcp add blastradius -- npx -y @jondot/blastradius mcp
+```
 
 Use one client's index by setting `BR_HOME` in the server's environment:
 
-    claude mcp add blastradius -e BR_HOME=$HOME/clients/acme -- br mcp
+```sh
+claude mcp add blastradius -e BR_HOME=$HOME/clients/acme -- br mcp
+```
 
 Any client with a JSON config (Claude Desktop, Cursor, Zed and others):
 
-    { "mcpServers": { "blastradius": { "command": "br", "args": ["mcp"], "env": { "BR_HOME": "/home/me/.blastradius" } } } }
+```json
+{ "mcpServers": { "blastradius": { "command": "br", "args": ["mcp"], "env": { "BR_HOME": "/home/me/.blastradius" } } } }
+```
 
 Build the index first with `br init`; the server reads it and never builds one.
 
@@ -49,9 +57,11 @@ A hunt that finds something is a normal answer (`isError` is false). `isError` i
 
 ## Try it by hand
 
-    printf '%s\n' \
-      '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"me","version":"1"}}}' \
-      '{"jsonrpc":"2.0","method":"notifications/initialized"}' \
-      '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"hunt","arguments":{"indicators":["npm:left-pad@1.3.0"]}}}' | br mcp
+```sh
+printf '%s\n' \
+  '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"me","version":"1"}}}' \
+  '{"jsonrpc":"2.0","method":"notifications/initialized"}' \
+  '{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"hunt","arguments":{"indicators":["npm:left-pad@1.3.0"]}}}' | br mcp
+```
 
 

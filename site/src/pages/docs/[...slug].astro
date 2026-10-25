@@ -1,0 +1,41 @@
+---
+import Docs from '../../layouts/Docs.astro';
+import { allPages, loadDocs } from '../../lib/docs';
+import { url } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const docs = await loadDocs();
+  return docs.map(d => ({ params: { slug: d.page.key }, props: { key: d.page.key } }));
+}
+
+const { key } = Astro.props;
+const docs = await loadDocs();
+const pages = await allPages();
+const doc = docs.find(d => d.page.key === key)!;
+const { page, Content } = doc;
+const isPlaybook = page.kind === 'playbook' || page.kind === 'playbooks';
+const upper = doc.title.toUpperCase();
+const level = upper.length > 24 ? upper.slice(0, 23).trimEnd() + '…' : upper;
+const crumbs = [
+  { label: 'blastradius', href: url('/') },
+  { label: 'docs', href: url('/docs/') },
+  ...(page.kind === 'playbook' ? [{ label: 'playbooks', href: url('/docs/playbooks/') }] : []),
+  { label: doc.title },
+];
+---
+<Docs
+  title={`${doc.title} · br docs`}
+  description={page.description}
+  tag={page.kind === 'guide' ? 'Guide' : 'Playbook'}
+  level={level}
+  h1={doc.title}
+  ledeHtml={doc.ledeHtml}
+  crumbs={crumbs}
+  current={page.key}
+  pages={pages}
+  toc={doc.toc}
+  source={page.source!}
+  navCurrent={isPlaybook ? 'playbooks' : 'docs'}
+>
+  <Content />
+</Docs>
